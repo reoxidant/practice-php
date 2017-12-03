@@ -271,7 +271,7 @@
 	date_modify($date, "1 month");
 	echo date_format($date, "Y-m-d")."<br>";
 
-	$date = date_create('2025-12-31');
+	$date = date_create('2025-1 2-31');
 	date_modify($date, "3 days");
 	echo date_format($date, "Y-m-d")."<br>";
 
@@ -284,7 +284,7 @@
 	echo date_format($date, 'Y-m-d');
 ?> -->
 
-Rere
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi at et, amet, asperiores vero cupiditate alias sequi placeat consequuntur esse reprehenderit, itaque deleniti provident ipsa vel, adipisci perferendis quibusdam. Ipsum.</p>
 
 
 
