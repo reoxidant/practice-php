@@ -284,7 +284,38 @@
 	echo date_format($date, 'Y-m-d');
 ?> -->
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi at et, amet, asperiores vero cupiditate alias sequi placeat consequuntur esse reprehenderit, itaque deleniti provident ipsa vel, adipisci perferendis quibusdam. Ipsum.</p>
+<!-- Тема: Задачи -->
+
+<!-- 19. Узнайте сколько дней осталось до Нового Года. Скрипт должен работать в любом году. -->
+<!-- <?php 
+	$curTime = mktime(23,59,59,12,31);
+	$curTite++;
+	echo floor(($curTime - time()) / (60 * 60 * 24));
+?> -->
+
+<!-- 20. Сделайте форму с одним полем ввода, в которое пользователь вводит год. Найдите все пятницы 13-е в этом году. Результат выведите в виде массива дат. -->
+<form action="" method="GET">
+	<p>
+		Введите Год: <br>
+		<input type="text" name="year">
+	</p>
+	<input type="submit">
+</form>
+<?php
+	if(isset($_REQUEST['year'])){
+		$date = $_REQUEST['year'];
+		$arr = [];
+		for($i = 0; $i < 12; $i++){
+			$timestamp = mktime(0,0,0,$i,13,$year);
+			echo $timestamp."<br>";
+			if(date('w', $timestamp) == 5){
+				$arr[] = date('d-m-Y', $timestamp);
+			}
+		}
+		var_dump($arr);
+	}
+?>
+
 
 
 
