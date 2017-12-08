@@ -81,16 +81,5 @@
 	}
 
 	echo isNine(sumNum(865)); */
-
-	// так работает array_sum(str_split($num, 1)), а так нет $arr = str_split($num, 1); array_sum($arr);
-
-	function arr($num)
-	{	
-		$arr = [];
-		$arr = str_split($num, 1);
-		$num = array_sum($arr);
-		return $num;
-	}
-
-	var_dump(arr(12345));
+	
 ?>
