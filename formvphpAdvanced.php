@@ -207,22 +207,56 @@
 ?> -->
 
 <!-- 8. Модифицируйте функцию из предыдущей задачи так, чтобы она сохраняла значение инпута после отправки.  -->
-
+<!-- <form action="" method="GET">
+	<?php text(text, login, admin); ?> <br><br>
+	<input type="submit" name="submit">
+</form>
 <?php 
 	function text($type, $name, $value)
 	{
+		if(isset($_REQUEST[$name])){
+			$value = $_REQUEST[$name];
+		}
 		echo '<input type='.$type.' value='.$value.' name='.$name.'>';
 	}
+?> -->
+<!-- 9. Сделайте функцию, которая создает чекбокс. Если чекбокс не отмечен - функция должна отправлять 0 (то есть нужно сделать hidden инпут), если отмечен - 1. -->
 
-	function run()
-	{
-		text(text, login, admin);
-		echo '<input type="submit" name="submit">';
-	}
+<!-- <form action="" method="GET">
+	<?php createCheckBox("chb"); ?> &nbsp
+	<input type="submit">
+</form>
 
-	run();
+<?php 
 	var_dump($_REQUEST);
-?>
+	function createCheckBox($name)
+	{
+		echo '<input type="hidden" name="'.$name.'" value="0">';
+		echo '<input type="checkbox" name="'.$name.'" value="1">'; 
+	}
+?> -->
+
+<!-- 10. Напишите функцию, которая создает чекбокс и сохраняет его значение после отправки. -->
+
+<!-- <form action="" method="GET">
+	<?php crCheckbox('chb'); ?> &nbsp
+	<input type="submit" name="submit">
+</form>
+
+<?php 
+	function crCheckBox($name)
+	{
+		if(!empty($_REQUEST['submit'])){
+			if($_REQUEST["$name"] == 1){
+				$check = 'checked';
+			} else {
+				$check = '';
+			}
+		}
+		echo '<input type="hidden" name="'.$name.'" value="0">';
+		echo '<input type="checkbox" name="'.$name.'" value="1" '.$check.'>';
+	}
+?> -->
 
 
 
