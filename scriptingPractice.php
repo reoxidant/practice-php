@@ -722,7 +722,370 @@
 	}
 ?> -->
 
+<!-- 19. Напишите скрипт, который будет считать факториал числа. Само число вводится в инпут и после нажатия на кнопку пользователь должен увидеть результат. -->
 
+<!-- <form action="" method="GET">
+	<p>
+		Введите число: <br>
+		<input type="text" name="number">
+	</p>
+	<input type="submit" name="submit">
+</form>
+
+<?php 
+	if(is_numeric($_REQUEST['number']) and isset($_REQUEST['submit'])){
+		$number = $_REQUEST['number'];
+		$result = 1;
+		for ($i=1; $i <= $number; $i++) { 
+			$result *= $i;
+		}
+		echo $result;
+	} else {
+		echo "Неправильно введенные значения.";
+	}
+?> -->
+
+<!-- 20.  Напишите скрипт, который будет находить корни квадратного уравнения. Для этого сделайте 3 инпута, в которые будут вводиться коэффициенты уравнения. -->
+
+<!-- <form action="" method="GET">
+	<p>
+		Введите a: <br>
+		<input type="text" name="a">
+	</p>
+	<p>
+		Введите b: <br>
+		<input type="text" name="b">
+	</p>
+	<p>
+		Введите c: <br>
+		<input type="text" name="c">
+	</p>
+	<input type="submit" name="submit">
+</form>
+
+<?php  
+	if(!empty(is_numeric($_REQUEST['a'])) and is_numeric($_REQUEST['b']) and is_numeric($_REQUEST['c']) and isset($_REQUEST['submit'])){
+		$a = $_REQUEST['a'];
+		$b = $_REQUEST['b'];
+		$c = $_REQUEST['c'];
+		$d = (($b*$b) - 4 * ($a * $c));
+		if($d > 0){
+			$x1 = (-$b + sqrt($d)) / (2 * $a);
+			$x2 = (-$b - sqrt($d)) / (2 * $a);
+			echo "Значение для x1 = ".$x1."<br>";
+			echo "Значение для x2 = ".$x2."<br>";
+		}
+		if($d < 0){
+			echo "Нет корней";
+		}
+		if($d == 0){
+			$x = (-$b)/(2*$a);
+			echo "Значение для x = ".$x;
+		}
+	} else {
+		echo "Неправильно введенные значения.";
+	}
+?> -->
+
+<!-- 21. Даны 3 инпута. В них вводятся числа. Проверьте, что эти числа являются тройкой Пифагора: квадрат самого большого числа должен быть равен сумме квадратов двух остальных. -->
+<!-- <form action="" method="GET">
+	Тройка пифагора!
+	<p>
+		Введите числа: <br> <br>
+		Число 1 <input type="text" name="1"><br><br>
+		Число 2 <input type="text" name="2"><br><br>
+		Число 3 <input type="text" name="3">
+	</p>
+	<input type="submit" name="submit">
+</form>
+
+<?php 
+	if(is_numeric($_REQUEST['1']) and is_numeric($_REQUEST['2']) and is_numeric($_REQUEST['3']) and isset($_REQUEST['submit'])){
+		if(isPif($_REQUEST['1'], $_REQUEST['2'], $_REQUEST['3'])){
+			echo "Числа являются тройкой пифагора.";
+		} else {
+			echo "Числа не являются тройкой пифагора.";
+		}
+	}
+
+	function isPif($num1, $num2, $num3)
+	{
+		if($num1 > $num2 and $num1 > $num3){
+			if($num1 == ($num2 * $num2) + ($num3 * $num3)){
+				return true;
+			} else {
+				return false;
+			}
+		} 
+		if($num2 > $num1 and $num2 > $num3){
+			if($num2 == ($num1 * $num1) + ($num3 * $num3)){
+				return true;
+			} else {
+				return false;
+			}
+		}
+		if($num3 > $num2 and $num3 > $num1){
+			if($num3 == ($num2 * $num2) + ($num1 * $num1)){
+				return true;
+			} else {
+				return false;
+			}
+		} 
+	}
+?> -->
+
+<!-- 22. Дан инпут и кнопка. В инпут вводится число. По нажатию на кнопку выведите список делителей этого числа. -->
+<!-- <form action="" method="GET">
+	<p>
+		Введите число для нахождения его делителей: <br>
+		<input type="text" name="number">
+	</p>
+	<input type="submit">
+</form>
+
+<?php 
+	if(is_numeric($_REQUEST['number'])){
+		$result = [];
+		for ($i=1; $i <= $_REQUEST['number']; $i++) { 
+			if($_REQUEST['number']%$i == 0){
+				$result[] = $i;
+			}
+		}
+		var_dump($result);
+	}
+?> -->
+
+<!-- 23. Дан инпут и кнопка. В инпут вводится число. По нажатию на кнопку разложите число на простые множители. -->
+<!-- <form action="" method="GET">
+	<p>
+		Введите число для нахождения его множителей: <br>
+		<input type="text" name="number">
+	</p>
+	<input type="submit">
+</form>
+
+<?php
+	if(is_numeric($_REQUEST['number'])){
+		$result = [];
+		func($_REQUEST['number']);
+	} 
+
+	function func($num)
+	{
+		for ($i=2; $i <= $_REQUEST['number']; $i++) { 
+			if($_REQUEST['number'] % $i == 0){
+				$result[] = $i;
+				$_REQUEST['number'] = $_REQUEST['number'] / $i;
+				$i--;
+			}
+		}
+
+		var_dump($result);
+	}
+?> -->
+
+<!-- 24. Даны 2 инпута и кнопка. В инпуты вводятся числа. По нажатию на кнопку выведите список общих делителей этих двух чисел. -->
+<!-- <form action="" method="GET">
+	Общие делители двух чисел!
+	<p>
+		Введите первое число: <br>
+		<input type="text" name="firstNumber">
+	</p>
+	<p>
+		Введите второе число: <br>
+		<input type="text" name="secondNumber">
+	</p>
+	<input type="submit" name="submit">
+</form>
+
+<?php 
+	if(is_numeric($_REQUEST['firstNumber']) and is_numeric($_REQUEST['secondNumber']) and isset($_REQUEST['submit'])){
+		$fNumber = [];
+		$sNumber = [];
+		$result = [];
+
+		for($i = 1, $j = 1; $i <= $_REQUEST['firstNumber'] and $j <= $_REQUEST['secondNumber']; $i++, $j++){
+			if($_REQUEST['firstNumber'] % $i == 0 and $_REQUEST['secondNumber'] % $j == 0){
+				$fNumber[] = $i;
+				$sNumber[] = $j;
+			}
+		}
+
+		var_dump(array_intersect($fNumber, $sNumber));
+
+	}
+?> -->
+
+<!-- 25. Даны 2 инпута и кнопка. В инпуты вводятся числа. По нажатию на кнопку выведите наибольший общий делитель этих двух чисел. -->
+
+<!-- <form action="" method="GET">
+	Наибольший общий делитель из двух чисел!
+	<p>
+		Введите первое число: <br>
+		<input type="text" name="firstNumber">
+	</p>
+	<p>
+		Введите второе число: <br>
+		<input type="text" name="secondNumber">
+	</p>
+	<input type="submit" name="submit">
+</form>
+
+<?php 
+	if(is_numeric($_REQUEST['firstNumber']) and is_numeric($_REQUEST['secondNumber']) and isset($_REQUEST['submit'])){
+		$fNumber = [];
+		$sNumber = [];
+		$result = [];
+
+		for ($i=1, $j = 1; $i <= $_REQUEST['firstNumber'] and $j <= $_REQUEST['secondNumber']; $i++, $j++) { 
+			if($_REQUEST['firstNumber'] % $i == 0 and $_REQUEST['secondNumber'] % $j == 0){
+				$fNumber[] = $i;
+				$sNumber[] = $j;
+			} 
+		}
+
+		echo array_pop(array_intersect($fNumber, $sNumber));
+
+		
+	}
+?> -->
+
+<!-- 26. Даны 2 инпута и кнопка. В инпуты вводятся числа. По нажатию на кнопку выведите наименьшее число, которое делится и на одно, и на второе из введенных чисел. -->
+
+<!-- <form action="" method="GET">
+	Наименьший общий делитель из двух чисел!
+	<p>
+		Введите первое число: <br>
+		<input type="text" name="firstNumber">
+	</p>
+	<p>
+		Введите второе число: <br>
+		<input type="text" name="secondNumber">
+	</p>
+	<input type="submit" name="submit">
+</form>
+
+<?php 
+	if(is_numeric($_REQUEST['firstNumber']) and is_numeric($_REQUEST['secondNumber']) and isset($_REQUEST['submit'])){
+		$fNumber = [];
+		$sNumber = [];
+		$result = [];
+
+		for ($i=1, $j = 1; $i <= $_REQUEST['firstNumber'] and $j <= $_REQUEST['secondNumber']; $i++, $j++) { 
+			if($_REQUEST['firstNumber'] % $i == 0 and $_REQUEST['secondNumber'] % $j == 0){
+				$fNumber[] = $i;
+				$sNumber[] = $j;
+			} 
+		}
+
+		echo array_shift(array_intersect($fNumber, $sNumber));
+	}
+?>  -->
+
+<!-- 27. Даны 3 селекта и кнопка. Первый селект - это дни от 1 до 31, второй селект - это месяцы от января до декабря, а третий - это годы от 1990 до 2025. С помощью этих селектов можно выбрать дату. По нажатию на кнопку выведите на экран день недели, соответствующий этой дате, например, 'воскресенье'. -->
+
+<!-- <form action="" method="GET">
+	<p>
+		Выберите дату: <br>
+		<select name="day" id="days">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+			<option value="21">21</option>
+			<option value="22">22</option>
+			<option value="23">23</option>
+			<option value="24">24</option>
+			<option value="25">25</option>
+			<option value="26">26</option>
+			<option value="27">27</option>
+			<option value="28">28</option>
+			<option value="29">29</option>
+			<option value="30">30</option>
+			<option value="31">31</option>
+		</select>
+		<select name="month" id="months">
+			<option value="1">Январь</option>
+			<option value="2">Февраль</option>
+			<option value="3">Март</option>
+			<option value="4">Апрель</option>
+			<option value="5">Май</option>
+			<option value="6">Июнь</option>
+			<option value="7">Июль</option>
+			<option value="8">Август</option>
+			<option value="9">Сентябрь</option>
+			<option value="10">Октябрь</option>
+			<option value="11">Ноябрь</option>
+			<option value="12">Декабрь</option>
+		</select>
+		<select name="year" id="years">
+			<option value="1">1990</option>
+			<option value="2">1991</option>
+			<option value="3">1992</option>
+			<option value="4">1993</option>
+			<option value="5">1994</option>
+			<option value="6">1995</option>
+			<option value="7">1996</option>
+			<option value="8">1997</option>
+			<option value="9">1998</option>
+			<option value="10">1999</option>
+			<option value="11">2000</option>
+			<option value="12">2001</option>
+			<option value="13">2002</option>
+			<option value="14">2003</option>
+			<option value="15">2004</option>
+			<option value="16">2005</option>
+			<option value="17">2006</option>
+			<option value="18">2007</option>
+			<option value="19">2008</option>
+			<option value="20">2009</option>
+			<option value="21">2010</option>
+			<option value="22">2011</option>
+			<option value="23">2012</option>
+			<option value="24">2013</option>
+			<option value="25">2014</option>
+			<option value="26">2015</option>
+			<option value="27">2016</option>
+			<option value="28">2017</option>
+			<option value="29">2018</option>
+			<option value="30">2019</option>
+			<option value="31">2020</option>
+			<option value="32">2021</option>
+			<option value="33">2022</option>
+			<option value="34">2023</option>
+			<option value="34">2024</option>
+			<option value="35">2025</option>
+		</select>
+	</p>
+	<input type="submit" name="submit">
+</form>
+
+<?php
+	if(isset($_REQUEST['submit'])){
+		yourTime($_REQUEST['day'], $_REQUEST['month'], $_REQUEST['year']);
+	}
+
+	function yourTime($day, $month, $year){
+		$arr=[1=>'Понедельник', 'Вторник', "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
+		echo $arr[date('w', mktime(0,0,0, $month, $day, $year))];
+	}
+?> -->
 
 
 
