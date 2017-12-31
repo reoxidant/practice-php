@@ -255,5 +255,137 @@
 </body>
 </html>  -->
 
+<!-- 5. Над таблицей с работниками сделайте инпут, в который вводится зарплата. По нажатию на кнопку следует вывести таблицу работников с введенной зарплатой. -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PHP</title>
+	<style>
+		table{
+			width: 300px;
+			height: 100px;
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+		th, td{
+			border: 1px solid black;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<h4>Поиск работников по зарплате.</h4>
+	<form action="" method="GET">
+		<p>
+			Введите зарплату:
+			<input type="text" name="salary">
+			<input type="submit">
+		</p>
+	</form>
+	<table>
+		<tr>
+			<th>id</th>
+			<th>name</th>
+			<th>age</th>
+			<th>salary</th>
+		</tr>
+	<?php
+		$host = 'localhost';
+		$user = 'root';
+		$password = '';
+		$db_name = 'test';
+
+		$link = mysqli_connect($host, $user, $password, $db_name) or die(mysqli_error($link));
+		mysqli_query($link, "SET NAMES 'utf8'");
+
+		if(isset($_GET['salary']) AND is_numeric($_GET['salary']) == true){
+			$query = 'SELECT id, name, age, salary FROM workers WHERE salary='.$_GET['salary'].''; 
+			$sql = mysqli_query($link, $query) or die (mysqli_error($link));
+
+			while($result = mysqli_fetch_array($sql)){
+				echo "<tr>".
+						"<td>".$result['id']."</td>".
+						"<td>".$result['name']."</td>".
+						"<td>".$result['age']."</td>".
+						"<td>".$result['salary']."</td>".
+					"</tr>";
+			}
+		}
+	?>
+	</table>
+</body>
+</html> -->
+
+<!-- 6. Сделайте колонку 'удалить', в которой для каждого работника будет стоять чекбокс. Под таблицей сделайте кнопку, по нажатию на которую будут удалены те работники, для которых чекбокс был отмечен. -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PHP</title>
+	<style>
+		table{
+			width: 500px;
+			height: 300px;
+			border-collapse: collapse;
+			border: 1px solid black;
+		}
+		th, td{
+			border: 1px solid black;
+			text-align: center;
+		}
+		#submit{
+			position: relative;
+			left: 395px;
+		}
+	</style>
+</head>
+<body>
+<?php 
+	if(isset($_GET['names'])){
+		$query = "DELETE FROM workers WHERE id in (".implode(', ', $_GET['names']).")";
+		$result = mysqli_query($link, $query) or die(mysqli_error($link));
+	}
+?>
+	<form action="" method="GET">
+		<h3>Удалить работника</h3>
+		<table>
+			<tr>
+				<th>id</th>
+				<th>name</th>
+				<th>age</th>
+				<th>salary</th>
+				<th>удалить</th>
+			</tr>
+			<?php
+				$host = 'localhost';
+				$user = 'root';
+				$password = '';
+				$db_name = 'test';
+
+				$link = mysqli_connect($host, $user, $password, $db_name) or die(mysql_error($link));
+				mysqli_query($link, "SET NAMES 'utf-8'");
+
+				$query = "SELECT id, name, age, salary FROM workers";
+				$sql = mysqli_query($link, $query) or die (mysqli_error($link));
+
+				while($result = mysqli_fetch_array($sql)){
+					echo '<tr>'.
+					"<td>".$result['id']."</td>".
+					"<td>".$result['name']."</td>".
+					"<td>".$result['age']."</td>".
+					"<td>".$result['salary']."</td>".
+					"<td><input type='checkbox' name='names[]' value=".$result['id']."></td>".
+					"</tr>";
+				}
+			?>
+		</table>
+		<br>
+		<input id="submit" type="submit" value="Удалить">
+	</form>
+</body>
+</html> -->
 
 
