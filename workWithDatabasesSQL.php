@@ -45,114 +45,114 @@
 
 
 <!-- <?php 
-	//Тема: Задачи на основы работы с базами данных SQL
-	// $host = 'localhost';
-	// $user = 'root';
-	// $password = '';
-	// $db_name = 'test';
-	// $link = mysqli_connect($host, $user, $password, $db_name) or die(mysqli_error($link));
-	// mysqli_query($link, "SET NAMES 'utf8'");
+	Тема: Задачи на основы работы с базами данных SQL
+	$host = 'localhost';
+	$user = 'root';
+	$password = '';
+	$db_name = 'test';
+	$link = mysqli_connect($host, $user, $password, $db_name) or die(mysqli_error($link));
+	mysqli_query($link, "SET NAMES 'utf8'");
 
-	//Тема: Задачи на SELECT
+	Тема: Задачи на SELECT
 
-	// 1. Выбрать работника с id = 3
-	// $query = "SELECT * FROM workers WHERE id=3";
+	1. Выбрать работника с id = 3
+	$query = "SELECT * FROM workers WHERE id=3";
 
-	// 2. Выбрать работников с зарплатой 1000$.
-	// $query = "SELECT * FROM workers WHERE salary=1000";
+	2. Выбрать работников с зарплатой 1000$.
+	$query = "SELECT * FROM workers WHERE salary=1000";
 
-	// 3. Выбрать работников в возрасте 23 года. 
-	// $query = "SELECT * FROM workers WHERE age=23";
+	3. Выбрать работников в возрасте 23 года. 
+	$query = "SELECT * FROM workers WHERE age=23";
 
-	// 4. Выбрать работников с зарплатой более 400$.
-	// $query = "SELECT * FROM workers WHERE salary>400";
+	4. Выбрать работников с зарплатой более 400$.
+	$query = "SELECT * FROM workers WHERE salary>400";
 
-	// 5. Выбрать работников с зарплатой равной или большей 500$. 
-	// $query = "SELECT * FROM workers WHERE salary>=500";
+	5. Выбрать работников с зарплатой равной или большей 500$. 
+	$query = "SELECT * FROM workers WHERE salary>=500";
 
-	// 6. Выбрать работников с зарплатой НЕ равной 500$. 
-	// $query = "SELECT * FROM workers WHERE salary!=500";
+	6. Выбрать работников с зарплатой НЕ равной 500$. 
+	$query = "SELECT * FROM workers WHERE salary!=500";
 
-	// 7. Выбрать работников с зарплатой равной или меньшей 900$.
-	// $query = "SELECT * FROM workers WHERE salary<=900";
+	7. Выбрать работников с зарплатой равной или меньшей 900$.
+	$query = "SELECT * FROM workers WHERE salary<=900";
 
-	// 8. Узнайте зарплату и возраст Васи.
-	// $query = "SELECT salary, age FROM workers WHERE name='Вася'";
+	8. Узнайте зарплату и возраст Васи.
+	$query = "SELECT salary, age FROM workers WHERE name='Вася'";
 
-	// Тема: Задачи на OR и AND
+	Тема: Задачи на OR и AND
 
-	// 9. Выбрать работников в возрасте от 25 (не включительно) до 28 лет (включительно). 
-	// $query = "SELECT * FROM workers WHERE age>25 AND age<=28";
+	9. Выбрать работников в возрасте от 25 (не включительно) до 28 лет (включительно). 
+	$query = "SELECT * FROM workers WHERE age>25 AND age<=28";
 
-	// 10. Выбрать работника Петю.
-	// $query = "SELECT * FROM workers WHERE name = 'Петя'";
+	10. Выбрать работника Петю.
+	$query = "SELECT * FROM workers WHERE name = 'Петя'";
 
-	// 11. Выбрать работников Петю и Васю.
-	// $query = "SELECT * FROM workers WHERE name='Петя' OR name='Вася'";
+	11. Выбрать работников Петю и Васю.
+	$query = "SELECT * FROM workers WHERE name='Петя' OR name='Вася'";
 
-	// 12. Выбрать всех, кроме работника Петя.
-	// $query = "SELECT * FROM workers WHERE name != 'Петя'";
+	12. Выбрать всех, кроме работника Петя.
+	$query = "SELECT * FROM workers WHERE name != 'Петя'";
 
-	// 13. Выбрать всех работников в возрасте 27 лет или с зарплатой 1000$.
-	// $query = "SELECT * FROM workers WHERE age=27 OR salary=1000";
+	13. Выбрать всех работников в возрасте 27 лет или с зарплатой 1000$.
+	$query = "SELECT * FROM workers WHERE age=27 OR salary=1000";
 
-	// 14. Выбрать всех работников в возрасте от 23 лет (включительно) до 27 лет (не включительно) или с зарплатой 1000$.
-	// $query = "SELECT * FROM workers WHERE (age>=23 AND age<27) OR salary=1000";
+	14. Выбрать всех работников в возрасте от 23 лет (включительно) до 27 лет (не включительно) или с зарплатой 1000$.
+	$query = "SELECT * FROM workers WHERE (age>=23 AND age<27) OR salary=1000";
 
-	// 15. Выбрать всех работников в возрасте от 23 лет до 27 лет или с зарплатой от 400$ до 1000$.
-	// $query = "SELECT * FROM workers WHERE (age>23 AND age<27) OR (salary>400 AND salary<1000)";
+	15. Выбрать всех работников в возрасте от 23 лет до 27 лет или с зарплатой от 400$ до 1000$.
+	$query = "SELECT * FROM workers WHERE (age>23 AND age<27) OR (salary>400 AND salary<1000)";
 
-	// 16. Выбрать всех работников в возрасте 27 лет или с зарплатой не равной 400$.
-	// $query = "SELECT * FROM workers WHERE age=27 OR salary!=400";
+	16. Выбрать всех работников в возрасте 27 лет или с зарплатой не равной 400$.
+	$query = "SELECT * FROM workers WHERE age=27 OR salary!=400";
 
-	// Тема: Задачи на INSERT
+	Тема: Задачи на INSERT
 
-	// 17. Добавьте нового работника Никиту, 26 лет, зарплата 300$. Воспользуйтесь первым синтаксисом.
-	// $query = "INSERT INTO workers SET name='Никита', age=26, salary=300";
+	17. Добавьте нового работника Никиту, 26 лет, зарплата 300$. Воспользуйтесь первым синтаксисом.
+	$query = "INSERT INTO workers SET name='Никита', age=26, salary=300";
 
-	// 18. Добавьте нового работника Светлану с зарплатой 1200$. Воспользуйтесь вторым синтаксисом.
-	// $query = "INSERT INTO workers (name, age, salary) VALUES ('Светлана',20, 1200)";
+	18. Добавьте нового работника Светлану с зарплатой 1200$. Воспользуйтесь вторым синтаксисом.
+	$query = "INSERT INTO workers (name, age, salary) VALUES ('Светлана',20, 1200)";
 
-	// 19. Добавьте двух новых работников одним запросом: Ярослава с зарплатой 1200$ и возрастом 30, Петра с зарплатой 1000$ и возрастом 31. 
-	// $query = "INSERT INTO workers (name, age, salary) VALUES ('Ярослав', 30, 1200), ('Петя', 31, 1000)";
+	19. Добавьте двух новых работников одним запросом: Ярослава с зарплатой 1200$ и возрастом 30, Петра с зарплатой 1000$ и возрастом 31. 
+	$query = "INSERT INTO workers (name, age, salary) VALUES ('Ярослав', 30, 1200), ('Петя', 31, 1000)";
 
-	// Тема: Задачи на DELETE
+	Тема: Задачи на DELETE
 
-	// 20. Удалите работника с id=7.
-	// $query = "DELETE FROM workers WHERE id=7";
+	20. Удалите работника с id=7.
+	$query = "DELETE FROM workers WHERE id=7";
 
-	// 21. Удалите Колю.
-	// $query = "DELETE FROM workers WHERE name='Коля'";
+	21. Удалите Колю.
+	$query = "DELETE FROM workers WHERE name='Коля'";
 
-	// 22. Удалите всех работников, у которых возраст 23 года.
-	// $query = "DELETE FROM workers WHERE age=23";
+	22. Удалите всех работников, у которых возраст 23 года.
+	$query = "DELETE FROM workers WHERE age=23";
 
-	// Задачи на UPDATE
+	Задачи на UPDATE
 
-	// 23. Поставьте Васе зарплату в 200$.
-	// $query = "UPDATE workers SET salary=200 WHERE name='Вася'";
+	23. Поставьте Васе зарплату в 200$.
+	$query = "UPDATE workers SET salary=200 WHERE name='Вася'";
 
-	// 24. Работнику с id=4 поставьте возраст 35 лет.
-	// $query = "UPDATE workers SET age=35 WHERE id=4";
+	24. Работнику с id=4 поставьте возраст 35 лет.
+	$query = "UPDATE workers SET age=35 WHERE id=4";
 
-	// 25. Всем, у кого зарплата 500$ сделайте ее 700$.
-	// $query = "UPDATE workers SET salary=700 WHERE salary=500";
+	25. Всем, у кого зарплата 500$ сделайте ее 700$.
+	$query = "UPDATE workers SET salary=700 WHERE salary=500";
 
-	// 26. Работникам с id больше 2 и меньше 5 включительно поставьте возраст 23. 
-	// $query = "UPDATE workers SET age=23 WHERE id>2 AND id<5";
+	26. Работникам с id больше 2 и меньше 5 включительно поставьте возраст 23. 
+	$query = "UPDATE workers SET age=23 WHERE id>2 AND id<5";
 
-	// 27. Поменяйте Васю на Женю и прибавьте ему зарплату до 900$.
-	// $query = "UPDATE workers SET name='Женя', salary=900 WHERE name='Вася'";
+	27. Поменяйте Васю на Женю и прибавьте ему зарплату до 900$.
+	$query = "UPDATE workers SET name='Женя', salary=900 WHERE name='Вася'";
 
-	// $result = mysqli_query($link, $query) or die(mysqli_error($link));
+	$result = mysqli_query($link, $query) or die(mysqli_error($link));
 
-	// for($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
+	for($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
 
-	// var_dump($data);
+	var_dump($data);
 
 ?> -->
 
-<!-- Тема: Команды ORDER BY, LIMIT, COUNT, LIKE в SQL -->
+
 
 <?php 
 	// ПРИМЕРЫ
@@ -188,58 +188,58 @@
 	// var_dump($data);
 
 	// ПРИМЕРЫ
+	/*Тема: Команды ORDER BY, LIMIT, COUNT, LIKE в SQL
+	Тема: Задачи на базы данных SQL.
+	$host = 'localhost';
+	$user = 'root';
+	$password = '';
+	$db_name = 'test';
+	$link = mysqli_connect($host,$user,$password,$db_name) or die(mysqli_error($link));
+	mysqli_query($link, "SET NAMES 'utf8'");
 
-	// Тема: Задачи на базы данных SQL.
-	// $host = 'localhost';
-	// $user = 'root';
-	// $password = '';
-	// $db_name = 'test';
-	// $link = mysqli_connect($host,$user,$password,$db_name) or die(mysqli_error($link));
-	// mysqli_query($link, "SET NAMES 'utf8'");
+	Тема: Задачи на LIMIT.
 
-	// Тема: Задачи на LIMIT.
+	1. Из таблицы workers достаньте первые 6 записей.
+	$query = "SELECT * FROM workers WHERE id>0 LIMIT 6";
 
-	// 1. Из таблицы workers достаньте первые 6 записей.
-	// $query = "SELECT * FROM workers WHERE id>0 LIMIT 6";
+	2. Из таблицы workers достаньте записи со вторую, 3 штуки. 
+	$query = "SELECT * FROM workers WHERE id>0 LIMIT 2,3";
 
-	// 2. Из таблицы workers достаньте записи со вторую, 3 штуки. 
-	// $query = "SELECT * FROM workers WHERE id>0 LIMIT 2,3";
+	Тема: Задачи на ORDER BY
 
-	// Тема: Задачи на ORDER BY
+	3. Из таблицы workers достаньте всех работников и отсортируйте их по возрастанию зарплаты.
+	$query = "SELECT * FROM workers ORDER BY salary";
 
-	// 3. Из таблицы workers достаньте всех работников и отсортируйте их по возрастанию зарплаты.
-	// $query = "SELECT * FROM workers ORDER BY salary";
+	4. Из таблицы workers достаньте всех работников и отсортируйте их по убыванию зарплаты.
+	$query = "SELECT * FROM workers ORDER BY salary DESC";
 
-	// 4. Из таблицы workers достаньте всех работников и отсортируйте их по убыванию зарплаты.
-	// $query = "SELECT * FROM workers ORDER BY salary DESC";
+	5. Из таблицы workers достаньте работников со второго по шестого и отсортируйте их по возрастанию возраста. 
+	$query = "SELECT * FROM workers ORDER BY age LIMIT 2,4";
 
-	// 5. Из таблицы workers достаньте работников со второго по шестого и отсортируйте их по возрастанию возраста. 
-	// $query = "SELECT * FROM workers ORDER BY age LIMIT 2,4";
+	Тема: Задачи на COUNT
 
-	// Тема: Задачи на COUNT
+	6. В таблице workers подсчитайте всех работников.
+	$query = "SELECT COUNT(*) as count FROM workers WHERE id>0";
 
-	// 6. В таблице workers подсчитайте всех работников.
-	// $query = "SELECT COUNT(*) as count FROM workers WHERE id>0";
+	7. В таблице workers подсчитайте всех работников c зарплатой 300$. 
+	$query = "SELECT COUNT(*) as count FROM workers WHERE salary=300";
 
-	// 7. В таблице workers подсчитайте всех работников c зарплатой 300$. 
-	// $query = "SELECT COUNT(*) as count FROM workers WHERE salary=300";
+	Тема: Задачи на LIKE.
 
-	// Тема: Задачи на LIKE.
+	8. В таблице pages найти строки, в которых фамилия автора заканчивается на "ов". 
+	$query = "SELECT * FROM pages WHERE athor LIKE '%ов'";
 
-	// 8. В таблице pages найти строки, в которых фамилия автора заканчивается на "ов". 
-	// $query = "SELECT * FROM pages WHERE athor LIKE '%ов'";
+	9. В таблице pages найти строки, в которых есть слово "элемент" (искать только по колонке article). 
+	$query = "SELECT * FROM pages WHERE article LIKE '%элемент%'";
 
-	// 9. В таблице pages найти строки, в которых есть слово "элемент" (искать только по колонке article). 
-	// $query = "SELECT * FROM pages WHERE article LIKE '%элемент%'";
+	10. В таблице workers найти строки, в которых возраст работника начинается с числа 3, а далее идет только одна цифра. 
+	$query = "SELECT * FROM workers WHERE age LIKE '3_'";
 
-	// 10. В таблице workers найти строки, в которых возраст работника начинается с числа 3, а далее идет только одна цифра. 
-	// $query = "SELECT * FROM workers WHERE age LIKE '3_'";
-
-	// 11. В таблице workers найти строки, в которых имя работника заканчивается на "я". 
-	// $query = "SELECT * FROM workers WHERE name LIKE '%я'";
+	11. В таблице workers найти строки, в которых имя работника заканчивается на "я". 
+	$query = "SELECT * FROM workers WHERE name LIKE '%я'";
 	
-	// $result = mysqli_query($link, $query) or die(mysqli_error($link));
-	// for($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
-	// var_dump($data);
+	$result = mysqli_query($link, $query) or die(mysqli_error($link));
+	for($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
+	var_dump($data);*/
 	
 ?>
