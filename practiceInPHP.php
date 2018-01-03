@@ -219,7 +219,6 @@
 		?>
 	</table>
 	<?php } ?>
-	<!-- Продолжение -->
 	<?php if(isset($_GET['edit_id'])){ 
 		$query = 'SELECT id, name, age, salary FROM workers WHERE id='.$_GET['edit_id'].''; 
 		$sql = mysqli_query($link, $query) or die (mysqli_error($link)); 
@@ -316,7 +315,7 @@
 </html>
 
 6. Сделайте колонку 'удалить', в которой для каждого работника будет стоять чекбокс. Под таблицей сделайте кнопку, по нажатию на которую будут удалены те работники, для которых чекбокс был отмечен.
-
+ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -383,6 +382,6 @@
 		<input id="submit" type="submit" value="Удалить">
 	</form>
 </body>
-</html> -->
+</html> 
 
 
