@@ -94,7 +94,7 @@
 
 <!-- Урок №2 - Реализуйте гостевую книгу с пагинацией, как показано в следующем образце: -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -130,6 +130,15 @@
 			padding-top: 15px;
 			clear: both;
 		}
+		.sWindow{
+			display: inline-block;
+			vertical-align: middle;
+			height: 50px;
+			text-align: center;
+			background-color: #97cc96;
+			width: 250px;
+			margin-top: 20px;
+		}
 	</style>
 </head>
 <body>
@@ -147,7 +156,7 @@
 	?>
 
 	<?php 
-		$page = isset($_GET['page']) && $_GET['page'] <= 10 ? (int)$_GET['page'] : 1; //Страница пагнации
+		$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; //Страница пагнации
 		$perPage = isset($_GET['per-page']) && $_GET['per-page'] <= 50 ? (int)$_GET['per-page'] : 3; //Колличество элементов на одной странице пагнации
 
 		
@@ -160,22 +169,22 @@
 		$total = mysqli_fetch_assoc($sql2)['total'];
 		$pages = ceil ($total / $perPage);
 	?>
-	<?php 
-		if(isset($_GET['submit'])){
-			$username = $_GET['username'];
-			$datetime = 'NOW()';
-			$msg = $_GET['msg'];
-			insertInTable($username, $datetime, $msg, $link);
-		}	
-	?>
+	
 	<form id="myform" action="" method='GET' name="form" onsubmit="return isNull();">
 		<header>
 			<h1>Гостевая книга</h1>
-		</header>
-		
+		</header>	
 		<p><?php createPagnation($link, $pages, $perPage, $page); ?></p>
 		<?php selectAndShow($link, $start, $perPage, $sql); ?>
 		<p><?php createPagnation($link, $pages, $perPage, $page); ?></p>
+		<?php 
+			if(isset($_GET['submit'])){
+				$username = $_GET['username'];
+				$datetime = 'NOW()';
+				$msg = $_GET['msg'];
+				insertInTable($username, $datetime, $msg, $link);			
+			}	
+		?>
 		<table>
 			<tr>
 				<td>
@@ -212,6 +221,12 @@
 		function insertInTable($username, $datetime, $msg, $link)
 		{
 			mysqli_query($link, "INSERT INTO userbook SET username='$username', dt = {$datetime}, msg = '$msg'") or die(mysqli_error($link));
+			successfullWindow();
+		}
+	?>
+	<?php 
+		function successfullWindow(){
+			echo "<div class='sWindow'>"."<p>Запись успешно сохранена!</p>"."</div>";
 		}
 	?>
 	<?php 
@@ -250,9 +265,92 @@
 	<?php
 			endfor;
 	?>
-	<div class="end"><a href="?page=<?php echo $pages; ?>&per-page=<?php echo $perPage; ?>">>></a></div>
+		<div class="end"><a href="?page=<?php echo $pages; ?>&per-page=<?php echo $perPage; ?>">>></a></div>
 	<?php
 		}
 	?>
 </body>
+</html> -->
+
+<!--Урок 3. Реализуйте записную книгу, как показано ниже. -->
+
+<!-- Главная страница. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>List of notes</title>
+	<style>
+		body{
+			margin: 0;
+			padding: 0;
+			width: 100%;
+		}
+		form{
+			width: 30%;
+			margin: 0 auto;
+		}
+		.article{
+			padding: 10px 0px;
+			width: 100%;
+		}
+		a{
+			display: block;
+			text-align: center;
+			padding-top: 5px;
+			text-decoration: none;
+			background-color: red;
+		}
+		a:hover{
+			background-color: #ee9390;
+		}
+	</style>
+</head>
+<?php 
+	$host = 'localhost';
+	$user = 'root';
+	$password = '';
+	$db_name = 'notes';
+
+	$link = mysqli_connect($host, $user, $password) or die(mysqli_error($link));
+	mysqli_query($link, "CREATE DATABASE IF NOT EXISTS ".$db_name."") or die(mysqli_error($link));
+	mysqli_select_db($link, $db_name);
+	mysqli_query($link, "CREATE TABLE IF NOT EXISTS list (id INT NULL AUTO_INCREMENT PRIMARY KEY, headlist VARCHAR(100), dt DATETIME, content TEXT)") or die (mysqli_error($link));
+	mysqli_query($link, "SET NAMES 'utf8'") or die(mysqli_error($link));
+?>
+<body>
+	<form action="" method="GET">
+		<talbe>
+			<h1>Список записей</h1>
+			<?php 
+				$sql = mysqli_query($link, "SELECT * FROM list");
+				if(mysqli_fetch_assoc($sql) == NULL){
+					echo "На данный момент записи отсутствуют!";
+				}
+				while ($result = mysqli_fetch_assoc($sql)) {
+			?>
+				<div class="article">
+					<span style="font-weight: bold;"><?php echo $result['dt']; ?></span><a href="#"><?php echo $result['headlist']; ?></a> 
+					<p><?php echo $result['content']; ?></p>
+				</div>
+			<?php		
+				}	
+			?>
+			<a href="?page=<?php echo 2; ?>" style="width: 100%; height: 25px;  color: white; background-color: #d8524e;">Добавить запись </a>
+		</talbe>
+	</form>
+</body>
+<?php
+	if(isset($_GET['newNote'])){
+?>	
+	<form action="">
+		<h1>Новая запись</h1>
+		<input type="text">
+		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<input type="text">
+	</form>
+<?php
+	} 
+?>
 </html>
