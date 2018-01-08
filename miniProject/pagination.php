@@ -154,7 +154,7 @@
 			for ($i=1; $i <= $pages; $i++):
 	?>
         <div class="pagination">
-            <a href="?page=<?php echo $i; ?>&per-page=<?php echo $perPage; ?>" <?php if($page===$ i){ echo ' class="selected"';}; ?>>
+            <a href="?page=<?php echo $i; ?>&per-page=<?php echo $perPage; ?>" <?php if($page===$i){ echo ' class="selected"';}; ?>>
 					<?php echo $i; ?>
 				</a>
         </div>

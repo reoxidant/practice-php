@@ -40,7 +40,4 @@
 	function func($a){
 		return $a < 0;
 	}*/
-
-
-
 ?>
