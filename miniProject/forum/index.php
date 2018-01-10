@@ -146,11 +146,20 @@
 		mysqli_query($link, "CREATE TABLE IF NOT EXISTS authors (id INT NULL AUTO_INCREMENT PRIMARY KEY, header VARCHAR(100), dt DATETIME, name VARCHAR(100), msg TEXT)") or die (mysqli_error($link));
 		mysqli_query($link, "CREATE TABLE IF NOT EXISTS users (id INT NULL AUTO_INCREMENT PRIMARY KEY, dt DATETIME, name VARCHAR(100), msg TEXT)") or die (mysqli_error($link));
 		mysqli_query($link, "SET NAMES 'utf8'");
-	?>
-	<?php 
+
 		$page = isset($_GET['page']) && $_GET['page'] < 10 ? (int) $_GET['page'] : 1;
 		$perPage = 3;
 		$start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
+
+	?>
+	<?php 
+		if(isset($_GET['submit']) AND !empty($_GET['msg']) AND !empty($_GET['username']) AND !empty($_GET['topicname'])){
+			$topicname = $_GET['topicname'];
+			$datetime = 'NOW()';
+			$msg = $_GET['msg'];
+			$username = $_GET['username'];
+			$flag = insertInTable($link, $topicname, $datetime, $msg, $username);
+		}
 	?>
 	
     <div class="wrapper">
@@ -162,45 +171,26 @@
         </div>
         <h2>Темы форума</h2>
         <?php 
-        	$sql = mysqli_query($link, "SELECT * FROM authors");
-        	while($result = mysqli_fetch_assoc($sql)){
+        	selectAndShow($link, $start, $perPage);
         ?>
-        <div class="note">
-            <p class="topic"><a href="topic.html?topic=<?php echo $result['id']; ?>&page=1"><?php echo $result['header']; ?></a></p>
-            <p>
-                <span class="subheader">Создана:</span> <?php echo $result['dt']; ?>.
-                <span class="subheader">Автор:</span> <?php echo $result['name']; ?>.
-                <br>
-                <span class="subheader">Количество ответов:</span>
-            </p>
-        </div>
-        <?php } ?>
         <div>
             <nav>
                 <ul class="pagination">
-                    <?php ?>
+                    <?php 
+                    	$sql = mysqli_query($link, "SELECT FOUND_ROWS() as total") or die (mysqli_error($link));
+                    	$total = mysqli_fetch_assoc($sql)['total'];
+                    	$pages = ceil($total / $perPage);
+                    	createPagination($pages); 
+                    ?>
                 </ul>
             </nav>
         </div>
         <h2>Создать тему</h2>
         <?php 
-			if(isset($_GET['submit']) AND !empty($_GET['msg']) AND !empty($_GET['username']) AND !empty($_GET['topicname'])){
-				$topicname = $_GET['topicname'];
-				$datetime = 'NOW()';
-				$msg = $_GET['msg'];
-				$username = $_GET['username'];
-			
-			if(mysqli_query($link, "SELECT * FROM authors WHERE header = '$topicname'")){
-		?>
-			<div class="danger">
-	    		<p>Тема с таким названием уже существует!</p>
-			</div>
-		<?php }else if(mysqli_query($link, "INSERT INTO authors SET header='$topicname', dt={$datetime}, msg = '$msg', name='$username'") or die(mysqli_error($link))){	
-		?>
-	        <div class="info">
-	            <p>Тема успешно создана!</p>
-	        </div> 
-		<?php }} ?>
+        	if(isset($_GET['submit']) AND !empty($_GET['topicname'])){
+				isAlert($flag);
+			}
+        ?>
         <div id="form">
             <form action="#" method="GET">
                 <p>
@@ -218,6 +208,70 @@
             </form>
         </div>
     </div>
-</body>
+    <?php 
+    	function selectAndShow($link, $start, $perPage)
+    	{
+        	$sql = mysqli_query($link, "SELECT SQL_CALC_FOUND_ROWS header, dt, name, msg FROM authors WHERE name != '' LIMIT {$start}, {$perPage}")or die(mysqli_error($link));
+        	while($result = mysqli_fetch_assoc($sql)){
+    ?>
+	        <div class="note">
+	            <p class="topic"><a href="topic.html?topic=<?php echo $result['id']; ?>&page=1"><?php echo $result['header']; ?></a></p>
+	            <p>
+	                <span class="subheader">Создана:</span> <?php echo $result['dt']; ?>.
+	                <span class="subheader">Автор:</span> <?php echo $result['name']; ?>.
+	                <br>
+	                <span class="subheader">Количество ответов: </span><?php echo $result['count_answers']; ?>
+	            </p>
+	        </div>
+    <?php 
+			} 
+    	}
+    ?>
+    <?php 
+    	function createPagination($pages)
+    	{
+    		for($i = 1; $i <= $pages; $i++){
+    ?>
+    	<li>
+	    	<a href="?page=<?php echo $i; ?>">
+	    		<?php echo $i; ?>
+	    	</a>
+    	</li>
+    <?php
+    		}
+   		}
+    ?>
+    <?php 
+    	function isAlert($flag)
+    	{
+			if($flag == false){
+	?>
+		        <div class="danger">
+		        	<p>Тема с таким названием уже существует!</p> 
+		        </div> 
+	<?php 
+			} 
 
+			if($flag == true){
+	?>
+				<div class="info">
+		    		<p>Тема успешно создана!</p>
+				</div>
+	<?php 
+			}
+		}
+    ?>
+    <?php 
+    	function insertInTable($link, $topicname, $datetime, $msg, $username)
+    	{
+    		$result = mysqli_query($link, "SELECT * FROM authors WHERE header = '$topicname'");
+    		if(mysqli_num_rows($result)){
+    			return false;
+    		} else {
+    			mysqli_query($link, "INSERT INTO authors SET header = '$topicname', dt = $datetime, name = '$username', msg='$msg'");
+    			return true;
+    		}	
+    	}
+    ?>
+</body>
 </html>
