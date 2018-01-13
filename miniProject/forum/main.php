@@ -48,21 +48,21 @@
         display: inline;
     }
 
-    .pagination>.active>a {
-        z-index: 3;
-        color: #fff;
-        cursor: default;
-        background-color: #337ab7;
-        border-color: #337ab7;
-    }
-
-    .pagination>li>a .pagintation>li>span {
+    .pagination>li>a, .pagintation>li>span {
         position: relative;
         float: left;
         padding: 6px 12px;
         text-decoration: none;
         color: #337ab7;
         border: 1px solid #ddd;
+    }
+
+    #active{
+        z-index: 3;
+        color: white;
+        cursor: default;
+        background-color: #337ab7;
+        border-color: #337ab7;
     }
 
     h2 {
@@ -180,7 +180,7 @@
                     	$sql = mysqli_query($link, "SELECT FOUND_ROWS() as total") or die (mysqli_error($link));
                     	$total = mysqli_fetch_assoc($sql)['total'];
                     	$pages = ceil($total / $perPage);
-                    	createPagination($pages); 
+                    	createPagination($pages, $page); 
                     ?>
                 </ul>
             </nav>
@@ -211,11 +211,11 @@
     <?php 
     	function selectAndShow($link, $start, $perPage)
     	{
-        	$sql = mysqli_query($link, "SELECT SQL_CALC_FOUND_ROWS header, dt, name, msg FROM authors WHERE name != '' LIMIT {$start}, {$perPage}")or die(mysqli_error($link));
+        	$sql = mysqli_query($link, "SELECT SQL_CALC_FOUND_ROWS * FROM authors WHERE name != '' LIMIT {$start}, {$perPage}")or die(mysqli_error($link));
         	while($result = mysqli_fetch_assoc($sql)){
     ?>
 	        <div class="note">
-	            <p class="topic"><a href="topic.html?topic=<?php echo $result['id']; ?>&page=1"><?php echo $result['header']; ?></a></p>
+	            <p class="topic"><a href="topic.php?topic=<?php echo $result['id']; ?>&page=1"><?php echo $result['header']; ?></a></p>
 	            <p>
 	                <span class="subheader">Создана:</span> <?php echo $result['dt']; ?>.
 	                <span class="subheader">Автор:</span> <?php echo $result['name']; ?>.
@@ -228,17 +228,20 @@
     	}
     ?>
     <?php 
-    	function createPagination($pages)
+    	function createPagination($pages, $page)
     	{
+    		echo "<li>"."<a href='?page=1'>"."<span>"."«"."</span>"."</a>"."</li>";
     		for($i = 1; $i <= $pages; $i++){
     ?>
     	<li>
-	    	<a href="?page=<?php echo $i; ?>">
+	    	<a href="?page=<?php echo $i; ?>" 
+	    	<?php if($page===$i){ echo ' id="active"';} ?>>
 	    		<?php echo $i; ?>
 	    	</a>
     	</li>
     <?php
     		}
+    		echo "<li>"."<a href='?page=$pages'>"."<span>"."»"."</span>"."</a>"."</li>";
    		}
     ?>
     <?php 

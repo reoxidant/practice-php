@@ -126,9 +126,9 @@
 			mysqli_query($link, "INSERT INTO userbook SET username='$username', dt = {$datetime}, msg = '$msg'") or die(mysqli_error($link));
 		}
 	?>
-    <?php 
+    <?php
 		function selectAndShow($link, $start, $perPage, $sql)
-		{	
+		{
 			while($result = mysqli_fetch_assoc($sql)){
 	?>
     <div class="article">
@@ -154,7 +154,8 @@
 			for ($i=1; $i <= $pages; $i++):
 	?>
         <div class="pagination">
-            <a href="?page=<?php echo $i; ?>&per-page=<?php echo $perPage; ?>" <?php if($page===$i){ echo ' class="selected"';}; ?>>
+            <a href="?page=<?php echo $i; ?>&per-page=<?php echo $perPage; ?>"
+            <?php if($page===$i){ echo ' class="selected"';}; ?>>
 					<?php echo $i; ?>
 				</a>
         </div>
