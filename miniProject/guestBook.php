@@ -5,9 +5,10 @@
 	<title>Гостевая книга</title>
     <style>
         #output{
-        	background-color: #97cc96;
-        	width: 250px;
-        	border: 1px solid black;
+        	background-color: #d9edf7;
+        	width: 300px;
+            color: #31708f;
+            padding: 15px;
         }
 
         #output p{
@@ -18,11 +19,63 @@
         	padding: 0px;
         	margin: 0px;
         	width: 100%;
+            color: #333;
         }
 
         #myform{
         	width: 300px;
         	margin: 0px auto;
+            padding: 10px;
+            text-align: justify;
+        }
+
+        h1{
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        td{
+            padding: 5px 0 5px 0 ;
+        }
+
+        .form-control{
+            display: block;
+            width: 300px;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            color: #555;
+            border: 1px solid #ccc;
+        }
+
+        textarea .form-control{
+            height: 100px;
+            width: 100%;
+            padding: 5px 10px;
+            text-align: justify;
+        }
+
+        #text{
+            height: 200px;
+        }
+
+        .btn{
+        width: 100%;
+        display: block;
+        color: #fff;
+        background-color: #5bc0de;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        text-align: center;
+        vertical-align: center;
+        border: 0px;
+        }
+
+        .btn:active {
+            background-color: #4398b1;
         }
     </style>
 </head>
@@ -34,7 +87,9 @@
         $db_name = 'guest';
 
         $link = mysqli_connect($host, $user, $password, $db_name) or die(mysqli_error($link));
+        mysqli_query($link, "CREATE DATABASE IF NOT EXISTS ".$db_name."") or die (mysqli_error($link));
         mysqli_select_db($link, $db_name );
+        mysqli_query($link, "CREATE TABLE IF NOT EXISTS book(id INT(4) NULL AUTO_INCREMENT PRIMARY KEY, username VARCHAR(100), dt DATETIME, msg TEXT)") or die (mysqli_error($link));
         mysqli_query($link, "SET NAMES 'utf-8'");
 
         $username = $_GET['username'];
@@ -64,13 +119,13 @@
 		?>
         <table>
             <tr>
-                <td><input type="text" name="username" placeholder="Ваше имя"></td>
+                <td><input class="form-control" type="text" name="username" placeholder="Ваше имя"></td>
             </tr>
             <tr>
-                <td><textarea name="msg" cols="30" rows="10" placeholder="Ваш отзыв"></textarea></td>
+                <td><textarea id="text" class="form-control" name="msg" cols="30" rows="20" placeholder="Ваш отзыв"></textarea></td>
             </tr>
             <tr>
-                <td><input type="submit" name="submit" value="Сохранить"></td>
+                <td><input class="btn" type="submit" name="submit" value="Сохранить"></td>
             </tr>
         </table>
 	</form>

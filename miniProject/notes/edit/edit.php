@@ -27,6 +27,7 @@
 			height: 30px;
 			color: white;
 			background-color: #d8524e;
+			border: 0;
 		}
 		#btn:hover{
 			background-color: #ee9390;
