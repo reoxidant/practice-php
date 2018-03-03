@@ -244,7 +244,7 @@
 </form>
 
 <?php 
-	function crCheckBox($name)
+	function crCheckBoxg($name)
 	{
 		if(!empty($_REQUEST['submit'])){
 			if($_REQUEST["$name"] == 1){
@@ -258,6 +258,26 @@
 	}
 ?> -->
 
+
+<form action="" method="GET">
+	<?php crCheckbox('chb'); ?> &nbsp
+	<input type="submit" name="submit">
+</form>
+
+<?php 
+	function crCheckBox($name)
+	{
+		if(!empty($_REQUEST['submit'])){
+			if($_REQUEST["$name"] == 1){
+				$check = 'checked';
+			} else {
+				$check = '';
+			}
+		}
+		echo '<input type="hidden" name="'.$name.'" value="0">';
+		echo '<input type="checkbox" name="'.$name.'" value="1" '.$check.'>';
+	}
+?>
 
 
 
