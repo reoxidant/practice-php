@@ -17,7 +17,7 @@
     }
 </style>
 <body>
-    <div style="display: table; margin: 0 auto;">
+    <div style="display: table; margin: 0 auto; width: 300px;">
         <div style="display: table-row;">
             <div style="display: table-cell;">
                 <header style="margin: 0 auto; width: 190px;">

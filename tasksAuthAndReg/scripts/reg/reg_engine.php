@@ -28,10 +28,10 @@
 				// Письмо для активации
 				$url = HOST.'tasksAuthAndReg/index.php?mode=reg&key='.md5($salt);
 				$to = $_REQUEST['email'];
-				$subject = 'Регистрация на http://social-net.ru';
+				$title = 'Регистрация на http://social-net.ru';
 				$message = 'Для активации Вашего аккаунта<br> пройдите по ссылке <a href="'.$url.'">'.$url.'</a>';
 
-				mail($to, $subject, $message, MAIL_AUTOR);
+				mail($to, MAIL_AUTOR, $title, $message);
 
 				echo "Регистрация прошла успешно!";
 
@@ -49,7 +49,7 @@
 	}
 	//Удачная регистрация
 	if(isset($_GET['status']) and $_GET['status'] == 'ok'){
-		echo "<b>Вы успешно зарегистрировались! Пожалуйста активируйте свой аккаут!</b>";
+		echo "<b>Вы успешно зарегистрировались! <br>Пожалуйста активируйте свой аккаут!</b>";
 	}
 
 	if(isset($_GET['key'])){
@@ -61,12 +61,13 @@
 		}else{
 			$row = mysqli_fetch_assoc($result);
 			$login = $row['login'];
+			$email = $row['email'];
 
 			mysqli_query($link, "UPDATE users SET status = '1' WHERE login='$login'");
 
 			$title = "Ваш аккаут на http://social-net.ru Успешно активирован!";
-			$message = "Поздравляю вас, ваш аккаут на http://social-net.ru успешно активирован";
-			mail();
+			$message = "Поздравляю вас, ваш аккаут на http://social-net.ru успешно активирован!";
+			mail($email, MAIL_AUTOR, $title, $message);
 
 			header('Location:'.HOST.'tasksAuthAndReg/index.php?mode=reg&active=ok');
 			exit;
@@ -74,6 +75,6 @@
 	}
 
 	if(isset($_GET['active']) and $_GET['active'] == 'ok'){
-		echo "<b>Ваш аккаут на http://social-net.ru Успешно активирован!</b>";
+		echo "<b>Ваш аккаут на <br> http://social-net.ru <br> Успешно активирован!</b>";
 	}
 ?>
