@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+</head>
+<body>
+    <div style="width: 200px; margin: 0 auto;">
+    	<header style="width: 150px; margin: 0 auto;">
+    	    <h2>Авторизация пользователя</h2>
+    	</header>
+    	<form action="" method="POST">
+    		<fieldset>
+    		    <legend>Введите данные:</legend>
+			        <p>
+			        	Логин: <br>
+					    <input type="text" name="a_login" value="<?php echo isset($_REQUEST['a_login'])? $_REQUEST['a_login']:''; ?>">
+			        </p>
+				    <p>
+				    	Пароль: <br>
+				    	<input type="password" name="a_password" value="">
+				    </p>
+				    <p>
+				    	<label>
+				    		<input type="checkbox" name="remember" value="1" <?php echo $_REQUEST['remember'] == 1? "checked":""; ?>>
+				    		Запомнить меня
+				    	</label>
+				    </p>
+			        <input type="submit" name="submit">
+    		</fieldset>
+    		&nbsp<?php include('scripts/auth/auth_engine.php'); ?>
+    	</form>
+    </div>
+</body>
+</html>
