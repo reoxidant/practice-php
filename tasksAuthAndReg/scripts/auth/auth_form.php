@@ -1,3 +1,11 @@
+<?php 
+    if(!defined('KEY')){
+        header("HTTP/1.1 404 Not Found");
+        exit(file_get_contents('../../404.html'));
+    }
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +37,8 @@
 				    </p>
 			        <input type="submit" name="submit">
     		</fieldset>
-    		&nbsp<?php include('scripts/auth/auth_engine.php'); ?>
+    		&nbsp<?php include('scripts/auth/auth_engine.php'); 
+    		?>
     	</form>
     </div>
 </body>

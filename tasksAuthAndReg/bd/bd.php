@@ -11,7 +11,7 @@
 	mysqli_select_db($link, DATABASE) or die (NO_DB_SELECT);
 
 	mysqli_query($link, "CREATE TABLE IF NOT EXISTS users (
-		id INT(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		id INT(4) NULL AUTO_INCREMENT PRIMARY KEY,
 		login VARCHAR(32) NOT NULL,
 		password VARCHAR(32) NOT NULL,
 		email VARCHAR(32) NOT NULL,
@@ -22,9 +22,9 @@
 		lang VARCHAR(32) NOT NULL,
 		dt VARCHAR(32) NOT NULL, 
 		salt VARCHAR(32) NOT NULL,
-		active_hex VARCHAR(32) NOT NULL,
 		cookie VARCHAR(32) NOT NULL,
-		status INT(1) NOT NULL,
+		verification INT(1) NOT NULL,
+		verification_code VARCHAR(32) NOT NULL,	
 		UNIQUE us (login, email)
 		) 
 		ENGINE = INNODB DEFAULT CHARSET = utf8")

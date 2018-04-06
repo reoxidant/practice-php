@@ -54,7 +54,7 @@
                                <input type="password" class="red" name="password" value="<?php echo isset($_REQUEST['password'])? $_REQUEST['password']:''; ?>"> 
                                
                             <?php 
-                                    echo "<br>логин должен быть<br> от 6 до 10 символов";
+                                    echo "<br>пароль должен быть<br> от 6 до 10 символов";
                                 } else {
                             ?>
                                 <input type="password" class="" name="password" value="<?php echo isset($_REQUEST['password'])? $_REQUEST['password']:''; ?>">
@@ -72,7 +72,7 @@
                                <input type="password" class="red" name="password_confirm" value="<?php echo isset($_REQUEST['password_confirm'])? $_REQUEST['password_confirm']:''; ?>"> 
                                
                             <?php 
-                                    echo "<br>логин должен быть<br> от 6 до 10 символов";
+                                    echo "<br>пароль должен быть<br> от 6 до 10 символов";
                                 } else {
                             ?>
                                 <input type="password" class="" name="password_confirm" value="<?php echo isset($_REQUEST['password_confirm'])? $_REQUEST['password_confirm']:''; ?>">

@@ -10,11 +10,9 @@
 	include('config.php');
 	include('bd/bd.php');
 	include('scripts/func/main.php');
-	
-	ob_start();
 
 	$mode = isset($_GET['mode']) ? $_GET['mode']:false;
-	$user = isset($_SESSION['user']) ? $_SESSION['user']: false;
+	$session = isset($_SESSION['auth']) ? $_SESSION['auth']:false;
 
 	switch ($mode) {
 		case 'reg':
@@ -28,6 +26,10 @@
 
 	$content = ob_get_contents();
 	ob_end_clean();
-
-	include ('html/index.php');
+	if($session == false){
+		include ('html/index.php');
+	}else{
+		header('Location:'.HOST.'tasksAuthAndReg/profile/profile.php?id='.$_SESSION['id'].'');
+	}
+	
 ?>
