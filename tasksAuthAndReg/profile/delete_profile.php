@@ -10,15 +10,12 @@
 	$id = isset($_SESSION['id'])? $_SESSION['id'] : '';
 	$login = isset($_SESSION['login'])? $_SESSION['login'] : $_COOKIE['login'];
 
-	$result = mysqli_query($link, "SELECT * FROM users WHERE id='$id'") or die (mysqli_error($link));
-
-	$user = mysqli_fetch_assoc($result);
-
 	if(isset($_REQUEST['back'])){
 		header('Location: profile.php?id='.$_SESSION['id'].'');
 		exit;
 	}
-	var_dump($user);
+
+	ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -35,11 +32,11 @@
 	<legend>Удалить аккаунт</legend>
 		<form action="" method="POST">
 			<p>
-				Введите пароль для удаления аккаунта:
+				Введите пароль:
 				<br>
 				<input type="password" name="password">
 			</p>
-			<a href="logout.php">Удалить аккаунт</a>
+			<input type="submit" name="next" value="Удалить аккаунт">
 			<input type="submit" name="back" value="Назад">
 		</form>
 	</fieldset>
@@ -49,6 +46,10 @@
 		}
 		if(!empty($_REQUEST['password']) and isset($_REQUEST['next'])){
 
+			$result = mysqli_query($link, "SELECT * FROM users WHERE id='$id'") or die (mysqli_error($link));
+
+			$user = mysqli_fetch_assoc($result);
+
 			$password = $_REQUEST['password'];
 			$salt = $user['salt'];
 			$user_password = $user['password'];
@@ -57,13 +58,15 @@
 
 			if($user_password == $saltedPassword){
 				mysqli_query($link, "DELETE FROM users WHERE id='$id'") or die(mysqli_error($link));
-			}else{
-				echo "Неправильный пароль!";
+				header('Location: logout.php?del');
+				
 			}
 		}
 		else if(isset($_REQUEST['next'])){
 			echo "Заполните все поля!";
 		}	
+
+		ob_end_flush();
 	?>
 </body>
 </html>

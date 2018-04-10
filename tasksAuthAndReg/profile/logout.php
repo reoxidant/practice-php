@@ -12,11 +12,16 @@
 
 	$user = mysqli_fetch_assoc($result);   
 
-	if(isset($_COOKIE['login']) or empty($user)) {
+	if(isset($_COOKIE['login']) or isset($_SESSION['id'])) {
 		session_destroy();
 	  	setcookie('login', '', time()-3600, '/');
 		setcookie('key', '', time()-3600, '/'); 
-	} 
+	}
 
-	header('Location:'.HOST.'tasksAuthAndReg/index.php');
+	if(isset($_REQUEST['del'])){
+		header('Location:'.HOST.'tasksAuthAndReg/index.php?del');
+	}else{
+		header('Location:'.HOST.'tasksAuthAndReg/index.php');
+	}
+	
 ?>

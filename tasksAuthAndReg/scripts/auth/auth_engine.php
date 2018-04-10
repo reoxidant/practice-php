@@ -14,6 +14,7 @@
 		$user = mysqli_fetch_assoc($result);
 		$salt = $user['salt'];
 		$saltedPassword = generateSaltedPassword($login, $password, $salt);
+		$user['password'];
 
 		if(!empty($user) and $user['password'] == $saltedPassword)
 		{
@@ -24,8 +25,6 @@
 				$_SESSION['id'] = $user['id'];
 				$_SESSION['login'] = $user['login'];
 				setcookie('datetime', date('Y-m-d H:i:s'), time()+60*60*24*30);
-
-				echo "Успешно";
 
 				if(!empty($_REQUEST['remember']) and $_REQUEST['remember'] == 1)
 				{

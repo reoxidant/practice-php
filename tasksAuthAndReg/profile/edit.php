@@ -4,6 +4,7 @@
 	include('../config.php');
 	include('../bd/bd.php');
 	include('../scripts/func/main.php');
+
 	$id = isset($_SESSION['id'])? $_SESSION['id'] : '';
 	$result = mysqli_query($link, "SELECT * FROM users WHERE id='$id'") or die(mysqli_error($link));
 	$user = mysqli_fetch_assoc($result);
@@ -12,7 +13,6 @@
 		header('Location: profile.php?id='.$_SESSION['id'].'');
 		exit;
 	}
-	
 ?>
 <!DOCTYPE html>
 <html lang="en">

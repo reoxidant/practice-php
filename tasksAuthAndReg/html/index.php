@@ -17,6 +17,9 @@
     </ul>
     <?php 
         echo $content;
+        if(isset($_REQUEST['del'])){
+            echo "Ваш аккаунт успешно удален";
+        }
     ?>
 </body>
 </html>

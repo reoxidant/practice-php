@@ -3,7 +3,7 @@
 		header("HTTP/1.1 404 Not Found");
 		exit(file_get_contents('../../404.html'));
 	}
-	if(isset($_REQUEST['submit']) and !empty($_REQUEST['login']) and !empty($_REQUEST['password']) and !empty($_REQUEST['password_confirm']) and !empty($_REQUEST['name']) and !empty($_REQUEST['age']) and !empty($_REQUEST['email']) and checkLenght($_REQUEST['password_confirm'], 6, 10)and checkLenght($_REQUEST['password'], 6, 10) and !empty($_REQUEST['lang']))
+	if(isset($_REQUEST['submit']) and !empty($_REQUEST['login']) and !empty($_REQUEST['password']) and !empty($_REQUEST['password_confirm']) and !empty($_REQUEST['name']) and !empty($_REQUEST['age']) and !empty($_REQUEST['email']) and checkLenght($_REQUEST['password_confirm'], 6, 12) and checkLenght($_REQUEST['password'], 6, 12) and !empty($_REQUEST['lang']))
 	{
 		$login = $_REQUEST['login'];
 		$password = $_REQUEST['password'];
@@ -45,11 +45,11 @@
 			echo "Пароли не совпадают!";
 		}
 	}else if(isset($_REQUEST['submit'])){
-		echo "Обязательные и дополнительные<br> поля не заполнены.";
+		echo "Обязательные и дополнительные<br> поля не заполнены, или заполнены с ошибкой.";
 	}
 	//Удачная регистрация
 	if(isset($_GET['status']) and $_GET['status'] == 'ok'){
-		echo "<b>Вы успешно зарегистрировались! <br>Пожалуйста, активируйте свой аккаут!</b>";
+		echo "<b>Вы успешно зарегистрировались! <br>Письмо с активацией отправленно на ваш e-mail!</b>";
 	}
 
 	if(isset($_GET['verification_code']) and isset($_GET['login'])){

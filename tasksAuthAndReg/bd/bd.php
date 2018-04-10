@@ -34,6 +34,14 @@
 	mysqli_query($link, 'SET NAMES utf8') or die(mysqli_error($link));
 	
 
-	
+	mysqli_query($link, "CREATE TABLE IF NOT EXISTS msg (
+	id INT(4) NULL AUTO_INCREMENT PRIMARY KEY,
+	recipient_id INT(4) NOT NULL,
+	sender_id INT(4) NOT NULL,
+	message VARCHAR(150) NOT NULL,
+	readed_msg INT(4) NOT NULL
+	) 
+	ENGINE = INNODB DEFAULT CHARSET = utf8")
+	or die (mysqli_error($link));
 
 ?>
