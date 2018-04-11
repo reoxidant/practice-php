@@ -24,7 +24,8 @@
 		salt VARCHAR(32) NOT NULL,
 		cookie VARCHAR(32) NOT NULL,
 		verification INT(1) NOT NULL,
-		verification_code VARCHAR(32) NOT NULL,	
+		verification_code VARCHAR(32) NOT NULL,
+		status INT(4) NOT NULL,	
 		UNIQUE us (login, email)
 		) 
 		ENGINE = INNODB DEFAULT CHARSET = utf8")

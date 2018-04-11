@@ -3,9 +3,10 @@
 
 	include('../config.php');
 	include('../bd/bd.php');
-    include('../user.php');
+    include('../user.php');  
 
 	session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,10 +19,8 @@
 </head>
 <body>
  	<?php
+
  		if(isset($_SESSION['auth']) and !empty($user) and $_SESSION['id'] == $_REQUEST['id'] or $_COOKIE['login'] == $user['login'] and $_COOKIE['key'] == $user['cookie']){
-            var_dump($user);
-            var_dump($_SESSION);
-            var_dump($_COOKIE);
  	?>
         <fieldset>
             <legend>Личный кабинет</legend>

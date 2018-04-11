@@ -9,9 +9,7 @@
 
     $user_id = $_SESSION['id'];
     
-    if(isset($_REQUEST['check']) and (int)$_REQUEST['check']){
-        mysqli_query($link, "UPDATE msg SET readed_msg = '1' WHERE recipient_id='$user_id'") or die(mysqli_error($link));
-    }
+    
 ?>
     <?php    
         $page_user = isset($_GET['page_user']) ? (int)$_GET['page_user'] : 1;
@@ -23,7 +21,9 @@
         //get Pages
         $sql2 = mysqli_query($link, "SELECT FOUND_ROWS() as total");
         $total = mysqli_fetch_assoc($sql2)['total'];
-        $pages = ceil($total / $perPage_user);  
+        $pages = ceil($total / $perPage_user); 
+
+        include('check_out.php');    
     ?>
     <?php
         if(mysqli_num_rows($sql) >= 1){
@@ -37,15 +37,20 @@
                 $users = mysqli_fetch_assoc($users_res);
         ?>
             <p>Новое сообщение от пользователя, <?php echo $users['login'];?></p>
-            <form action="" method="GET">
+            <form action="" method="POST">
                 <p>
-                   <input type="checkbox" name='check' value="1" id='1'><label for="1">Отметить прочитанным</label> &nbsp<input type="submit" value="Отправить">
+                   <input type="checkbox" name='check' value="1" id='1'><label for="1">Отметить прочитанным</label> 
                 </p>
+                <p>
+                    <input type="checkbox" name='check' value="2" id="2"><label for="2">Удалить диалог с пользователем</label>
+                </p>
+                <input type="submit" value="Отправить">   
                 <p>
                     <a href="message.php?id=<?php echo isset($sender_id)? $sender_id: ''; ?>">Прочитать</a>
                 </p>
             </form>
         <?php  
+            include('check_out.php');
             }
         ?>
         <div>
@@ -56,4 +61,5 @@
     </fieldset>
 <?php 
     }
+    
 ?>

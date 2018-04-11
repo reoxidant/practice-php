@@ -23,7 +23,7 @@
 				$salt = generateSalt();
 				$verification_code = md5($salt);
 				$saltedPassword = generateSaltedPassword($login, $password, $salt);
-				mysqli_query($link, "INSERT INTO users SET login='".$login."', password='".$saltedPassword."', name='".$name."', surname='".$surname."', age='".$age."', email='".$email."', city='".$city."', lang='".$lang."', dt='".$dt."', salt='".$salt."', verification_code='".$verification_code."'") or die (mysqli_error($link)." INSERT REGISTATION");
+				mysqli_query($link, "INSERT INTO users SET login='".$login."', password='".$saltedPassword."', name='".$name."', surname='".$surname."', age='".$age."', email='".$email."', city='".$city."', lang='".$lang."', dt='".$dt."', salt='".$salt."', verification_code='".$verification_code."', status=1") or die (mysqli_error($link)." INSERT REGISTATION");
 				
 				// Письмо для активации
 				$url = HOST.'tasksAuthAndReg/index.php?mode=reg&login='.$login.'&verification_code='.$verification_code;

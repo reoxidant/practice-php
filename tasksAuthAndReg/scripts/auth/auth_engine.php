@@ -24,6 +24,7 @@
 				$_SESSION['auth'] = true;
 				$_SESSION['id'] = $user['id'];
 				$_SESSION['login'] = $user['login'];
+				$_SESSION['status'] = $user['status'];
 				setcookie('datetime', date('Y-m-d H:i:s'), time()+60*60*24*30);
 
 				if(!empty($_REQUEST['remember']) and $_REQUEST['remember'] == 1)

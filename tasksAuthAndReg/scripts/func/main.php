@@ -46,4 +46,23 @@
 		return md5($login.md5($password).$salt);
 	}
 
+	function isAdmin()
+	{
+		session_start();
+		if($_SESSION['auth'] == true and $_SESSION['status'] == 10){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function isAccess($status)
+	{
+		if($status > 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 ?>
