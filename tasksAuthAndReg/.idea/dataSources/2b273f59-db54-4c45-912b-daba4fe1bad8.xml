@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.3">
+    <root id="1"/>
+    <schema id="2" parent="1" name="apple">
+      <Current>1</Current>
+    </schema>
+    <schema id="3" parent="1" name="articles"/>
+    <schema id="4" parent="1" name="auth"/>
+    <schema id="5" parent="1" name="datashop"/>
+    <schema id="6" parent="1" name="guest"/>
+    <schema id="7" parent="1" name="guest2"/>
+    <schema id="8" parent="1" name="information_schema"/>
+    <schema id="9" parent="1" name="interview"/>
+    <schema id="10" parent="1" name="mysql"/>
+    <schema id="11" parent="1" name="myTest"/>
+    <schema id="12" parent="1" name="my_bd"/>
+    <schema id="13" parent="1" name="notes"/>
+    <schema id="14" parent="1" name="objects"/>
+    <schema id="15" parent="1" name="organiser"/>
+    <schema id="16" parent="1" name="pagination"/>
+    <schema id="17" parent="1" name="performance_schema"/>
+    <schema id="18" parent="1" name="reg"/>
+    <schema id="19" parent="1" name="social">
+      <Visible>1</Visible>
+    </schema>
+    <schema id="20" parent="1" name="test"/>
+    <schema id="21" parent="1" name="Training"/>
+    <table id="22" parent="19" name="admin"/>
+    <table id="23" parent="19" name="msg"/>
+    <table id="24" parent="19" name="users"/>
+    <column id="25" parent="22" name="id">
+      <Position>1</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="26" parent="22" name="login">
+      <Position>2</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="22" name="password">
+      <Position>3</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="22" name="salt">
+      <Position>4</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="29" parent="22" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="30" parent="23" name="id">
+      <Position>1</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="31" parent="23" name="recipient_id">
+      <Position>2</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="23" name="sender_id">
+      <Position>3</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="23" name="message">
+      <Position>4</Position>
+      <DataType>varchar(150)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="23" name="readed_msg">
+      <Position>5</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="35" parent="23" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="36" parent="24" name="id">
+      <Position>1</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="37" parent="24" name="login">
+      <Position>2</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="38" parent="24" name="password">
+      <Position>3</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="24" name="email">
+      <Position>4</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="24" name="name">
+      <Position>5</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="24" name="surname">
+      <Position>6</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="24" name="age">
+      <Position>7</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="24" name="city">
+      <Position>8</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="44" parent="24" name="lang">
+      <Position>9</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="24" name="dt">
+      <Position>10</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="24" name="salt">
+      <Position>11</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="24" name="cookie">
+      <Position>12</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="24" name="verification">
+      <Position>13</Position>
+      <DataType>int(1)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="24" name="verification_code">
+      <Position>14</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="24" name="status">
+      <Position>15</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="51" parent="24" name="us">
+      <ColNames>login
+email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="52" parent="24" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="53" parent="24" name="us">
+      <ColNames>login
+email</ColNames>
+      <UnderlyingIndexName>us</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>

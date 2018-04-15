@@ -25,7 +25,8 @@
 		cookie VARCHAR(32) NOT NULL,
 		verification INT(1) NOT NULL,
 		verification_code VARCHAR(32) NOT NULL,
-		status INT(4) NOT NULL,	
+		status INT(4) NOT NULL,
+		banned TIMESTAMP NOT NULL,
 		UNIQUE us (login, email)
 		) 
 		ENGINE = INNODB DEFAULT CHARSET = utf8")
@@ -41,6 +42,15 @@
 	sender_id INT(4) NOT NULL,
 	message VARCHAR(150) NOT NULL,
 	readed_msg INT(4) NOT NULL
+	) 
+	ENGINE = INNODB DEFAULT CHARSET = utf8")
+	or die (mysqli_error($link));
+
+	mysqli_query($link, "CREATE TABLE IF NOT EXISTS admin (
+	id INT(4) NULL AUTO_INCREMENT PRIMARY KEY,
+	login VARCHAR(32) NOT NULL,
+	password VARCHAR(32) NOT NULL,
+	salt VARCHAR(32) NOT NULL
 	) 
 	ENGINE = INNODB DEFAULT CHARSET = utf8")
 	or die (mysqli_error($link));

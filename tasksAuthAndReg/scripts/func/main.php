@@ -56,12 +56,14 @@
 		}
 	}
 
-	function isAccess($status)
+	function isAccess(array $status)
 	{
-		if($status > 1){
-			return true;
-		}else{
-			return false;
+		for ($i=0; $i < count($status); $i++) { 
+			if($status[$i] == $_SESSION['status']){
+				return true;
+			}else{
+				return false;
+			}
 		}
 	}
 

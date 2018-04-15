@@ -1,12 +1,15 @@
 <?php
 	define('KEY', true);
-
 	include('../config.php');
 	include('../bd/bd.php');
-    include('../user.php');  
-
+    include('../user.php');
+    include('../scripts/func/main.php');
+    
 	session_start();
 
+    $id = isset($_REQUEST['id'])? $_REQUEST['id'] : '';
+    $result = mysqli_query($link, "SELECT * FROM users WHERE id='$id'") or die(mysqli_error($link));
+    $user = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +22,7 @@
 </head>
 <body>
  	<?php
-
- 		if(isset($_SESSION['auth']) and !empty($user) and $_SESSION['id'] == $_REQUEST['id'] or $_COOKIE['login'] == $user['login'] and $_COOKIE['key'] == $user['cookie']){
+ 		if($_SESSION['auth'] == true and $_SESSION['id'] == $_REQUEST['id']){
  	?>
         <fieldset>
             <legend>Личный кабинет</legend>
@@ -32,6 +34,22 @@
             <p>Возраст: <?php echo !empty($user['age'])? $user['age'] : ''; ?></p>
             <p>Город: <?php echo !empty($user['city'])? $user['city'] : ''; ?></p>
 			<p>Язык: <?php echo !empty($user['lang'])? $user['lang'] : ''; ?></p>
+            <?php
+                $sql_res = mysqli_query($link, "SELECT * FROM users WHERE status = 2 or status = 10") or die(mysqli_error($link));
+                
+                    while($row = mysqli_fetch_assoc($sql_res)){
+                        $status_users[] = $row['status'];
+                    }
+
+                    if($status_users == NULL){
+                        echo "Установите администратора сайта!";
+                    }else if(isAccess($status_users)){
+
+            ?>
+                <a href="../admin_page/enter_as_admin.php">Админка</a>
+            <?php
+                    }
+            ?>
             <p><a href="<?php echo HOST; ?>/tasksAuthAndReg/profile/edit.php">Редактирование профиля</a></p>
             <p><a href="<?php echo HOST; ?>/tasksAuthAndReg/profile/change_password.php">Сменить пароль</a> или <a href="<?php echo HOST; ?>/tasksAuthAndReg/profile/delete_profile.php">Удалить аккаунт</a></p>
             <p><a href="logout.php">Выйти</a></p>
@@ -112,6 +130,7 @@
     <?php
     	}
     }
-	?>
+    ?>
+    
 </body>
 </html>

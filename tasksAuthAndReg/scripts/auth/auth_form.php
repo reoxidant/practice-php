@@ -35,7 +35,8 @@
 				    </p>
 			        <input type="submit" name="submit">
     		</fieldset>
-    		&nbsp<?php include('scripts/auth/auth_engine.php'); 
+    		&nbsp<?php include('auth_engine.php');
+
     		?>
     	</form>
     </div>
