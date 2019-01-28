@@ -1,0 +1,194 @@
+RewriteEngine On
+RewriteBase /
+
+#1. Выполните редирект страницы index.php на страницу test.php.
+
+#Redirect /index.php /test.php
+
+#2. Выполните редирект страницы index1.php на страницу 1.php, страницы index2.php на страницу 2.php, страницы index3.php на страницу 3.php.
+
+#Redirect /index1.php /1.php
+#Redirect /index2.php /2.php
+#Redirect /index3.php /3.php
+
+#3. Выполните редирект страницы index.php на страницу http://site.com.
+
+#Redirect /index.php http://site.com
+
+#Основы работы с RewriteRule в htaccess
+
+#4. Выполните редирект всех запросов к папке dir на страницу index.php.
+#Выполните редирект всех файлов, заканчивающихся на .html, на страницу index.php.
+#RewriteRule ^dir/ index.php
+
+#5. Выполните редирект всех запросов к папке dir1 на страницу index1.php, всех запросов к папке dir2 на страницу index2.php.
+
+#RewriteRule ^dir1/ index.php
+#RewriteRule ^dir2/ index2.php
+
+#6. Выполните редирект всех файлов, заканчивающихся на .html, на страницу index.php.
+
+#RewriteRule .+\.html index.php
+
+#7. Выполните редирект всех файлов, заканчивающихся на .php, на страницу index.php.
+
+#RewriteRule .+\.php index.php
+
+#8. Выполните редирект всех файлов, заканчивающихся на .html или .php, на страницу index.php.
+
+#RewriteRule .+\.(html|php) index.php
+#9. Выполните редирект всех файлов, заканчивающихся на .html на такие же файлы, но с расширением .php.
+
+#RewriteRule (.+\.)html $1php
+
+#10. Выполните редирект всех запросов к вашему сайту на такие же запросы, но на сайте http://site.com.
+
+#RewriteRule ^(.+)$ http://site.com/$1
+
+#11. Выполните редирект страницы index1.php на страницу 1.php, страницы index2.php на страницу 2.php, страницы index3.php на страницу 3.php. Решите задачу с помощью одной директивы RedirectMatch.
+
+#RedirectMatch ^/index(\d)\.php /$1.php
+
+#12. Выполните редирект всех запросов, которые содержат в адресе /dir/, на страницу index.php.
+
+#RewriteRule ^.*/dir/+[^/] index.php
+
+#13. Выполните редирект всех запросов, которые содержат в адресе текст dir, на страницу index.php.
+
+#RewriteRule ^.*dir.*/(.*)$ index.php$1
+
+#14. Выполните редирект всех запросов, которые заканчиваются на /dir/, на страницу index.php.
+
+#RewriteRule ^.*dir/(.*)$ index.php$1
+
+#15. Выполните редирект всех страниц вида test0.php на index.php. Вместо 0 может быть любая цифра.
+
+#RewriteRule ^.*test\d\.php index.php
+
+#16. Выполните редирект всех страниц вида test0.php на index.php. Вместо 0 может быть любое число.
+
+#RewriteRule ^.*test\d+\.php index.php
+
+#17. Выполните редирект всех страниц содержащих /0/ на index.php. Вместо 0 может быть любое число.
+
+#RewriteRule ^.*\d+/.* index.php
+
+#Отрицание в регулярном выражении htaccess
+
+#18. Выполните редирект всех страниц, кроме страницы test.php, на index.php.
+
+#RewriteRule !test\.php index.php
+
+#19. Выполните редирект всех файлов, НЕ заканчивающихся на .html, на index.php.
+
+#RewriteRule !.*\.html index.php
+
+#20. Выполните редирект всех запросов, НЕ начинающихся на /webroot/ на страницу index.php.
+
+#RewriteRule !^.*webroot/$ index.php
+
+#Основы работы с rewriteCond в htaccess
+
+#21. Выполните редирект всех файлов, заканчивающихся на .html, на index.php.
+
+#RewriteCond %{REQUEST_URI} \.html$
+#RewriteRule .* index.php
+
+#22. Выполните редирект всех файлов, НЕ заканчивающихся на .html, на index.php.
+
+#RewriteCond %{REQUEST_URI} !\.html$
+#RewriteRule .* index.php
+
+#23. Выполните редирект всех файлов, имеющих расширение .html и адрес которых начинается с /content/, на index.php.
+
+#RewriteCond %{REQUEST_URI} ^/content/.*
+#RewriteCond %{REQUEST_URI} \.html$
+#RewriteRule .* index.php
+
+#Использование флага OR в директиве rewriteCond в htaccess
+
+#24. Выполните редирект всех файлов, имеющих расширение .html ИЛИ расширение .php, на index.php.
+
+#RewriteCond %{REQUEST_URI} \.php$ [OR]
+#RewriteCond %{REQUEST_URI} \.html$
+#RewriteRule .+ index.php
+
+#25. Выполните редирект всех файлов, имеющих расширение .css ИЛИ путь к которым начинается с /styles/, на index.php.
+
+#RewriteCond %{REQUEST_URI} \.css$ [OR]
+#RewriteCond %{REQUEST_URI} ^/styles/.*
+#RewriteRule .+ index.php
+
+#Работа с флагами -f, -d, -s в директиве RewriteCond в htaccess
+
+#26. Выполните редирект всех запросов, являющихся существующими файлами, на index.php.
+
+#RewriteCond %{REQUEST_FILENAME} -f
+#RewriteRule .+ index.php
+
+#27. Выполните редирект всех запросов, НЕ являющихся существующими файлами, на index.php.
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule .+ index.php
+
+#28. Выполните редирект всех запросов, являющихся существующими папками, на index.php.
+
+#RewriteCond %{REQUEST_FILENAME} -d
+#RewriteRule .+ index.php
+
+#29. Выполните редирект всех запросов, НЕ являющихся существующими папками, на index.php.
+
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule .* index.php
+
+#30. Выполните редирект всех запросов, являющихся существующими файлами и имеющим расширение .html, на index.php.
+
+#RewriteCond %{REQUEST_FILENAME} -f
+#RewriteCond %{REQUEST_FILENAME} .*\.html$
+#RewriteRule .+ index.php
+
+#31. Выполните редирект всех запросов, НЕ являющихся существующими файлами и папками, на index.php.
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule .+ index.php
+
+#Флаг L для директивы RewriteRule в htaccess
+
+#32. Потренируйтесь использовать флаг L, подобно описанному в видео.
+
+#RewriteRule .+ index.php?get=1 [L]
+#RewriteRule ^index\.php$ index.php?get=2
+
+#RewriteRule ^index\.php$ index.php?get=2 [L]
+#RewriteRule .+ index.php?get=1
+
+#Получение запрошенного адреса в карман htaccess
+
+#33. Выполните редирект всех запросов, положив запрошенный адрес в карман и передав GET-параметром, на страницу index.php.
+
+#RewriteRule (.+) index.php?get=$1
+
+#34. Выполните редирект всех запросов на index.php, положив запрошенный адрес в карман и передав GET-параметром в index.php.
+
+#RewriteCond %{REQUEST_URI} !^/index\.php$
+#RewriteRule (.+) index.php?get=$1
+
+#Карманы в директиве RewriteCond в htaccess
+#Работа с флагом NC в htaccess
+
+#35. Выполните редирект запроса test.php на index.php. Сделайте так, чтобы адрес зарпоса можно было набрать в любом регистре.
+
+#RewriteRule ^test\.php index\.php [NC]
+
+#Свой файл ошибок 404 с помощью htaccess
+
+#36. Сделайте так, чтобы в случае 404 ошибки, пользователю показывался файл 404.php.
+
+#ErrorDocument 404 /404.php
+
+#Закрываем папку от прямого доступа с помощью htaccess
+
+#37. Дана папка test. Закройте прямой доступ к этой папке.
+
+#deny from all
