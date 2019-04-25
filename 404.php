@@ -1,3 +1,0 @@
-<?
-
-echo 'File not found';
