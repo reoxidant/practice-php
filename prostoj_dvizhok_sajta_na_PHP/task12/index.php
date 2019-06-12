@@ -6,7 +6,7 @@
  * Time: 11:03
  */
 
-/*Задача 11: Добавляем страницу 404
+/*Задача 12: Движок сайта PHP на базе данных
 
 Реализуйте описанное в теоретической части.*/
 
@@ -25,7 +25,7 @@ include('mysqli_connect.php');
     return array($res, $content);
 }*/
 
-if(isset($_GET['page'])){
+/*if(isset($_GET['page'])){
     $page = $_GET['page'];
 
     $query = "SELECT * FROM pages WHERE url = '$page'";
@@ -42,5 +42,27 @@ if(isset($_GET['page'])){
 }else{
     $title = 'index';
     $content = 'index';
+}*/
+
+if(isset($_GET['page'])) {
+    $page = $_GET['page'];
+}else{
+    $page = 'index';
 }
+
+$query = 'SELECT * FROM pages WHERE url = "'.$page.'"';
+$result = mysqli_query($link, $query) or die('Error this query'. mysqli_error($link));
+$page = mysqli_fetch_assoc($result);
+
+//    $path = 'pages/'.$page.'.php';
+if(!$page ){
+    $query = 'SELECT * FROM pages WHERE url = 404';
+    $result = mysqli_query($link, $query) or die('Error this query'. mysqli_error($link));
+    $page = mysqli_fetch_assoc($result);
+    header('HTTP/1.0 404 Not Found');
+}
+
+$title = $page['title'];
+$content = $page['text'];
+
 include('layout.php');
