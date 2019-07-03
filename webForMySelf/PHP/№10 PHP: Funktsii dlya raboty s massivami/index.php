@@ -312,7 +312,6 @@ echo "I need $power!
 ";
 */
 
-
 echo '<pre>';
 print_r($result);
 echo '</pre>';

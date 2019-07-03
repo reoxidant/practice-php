@@ -36,7 +36,7 @@ const PAGE2 = 'new const';
 </head>
 <body>
     <h1><?php echo PAGE;?></h1>
-<!--    <p>--><?php //echo $винни_пух;?><!--</p>-->
+<!--<p>--><?php //echo $винни_пух;?><!--</p>-->
     <p><?php echo $winnie_pooh;?></p>
     <p><?php echo $var;?></p>
     <p><?php echo PAGE2;?></p>

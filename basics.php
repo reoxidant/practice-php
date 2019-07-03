@@ -150,4 +150,77 @@
 	$var *= 7;
 	$var -= 15;
 	echo $var;*/
+/*
+	function a(&$a = 19){
+	    $a.=1;
+    }
+    $b = 6;
+	a($b);
+	echo $b++;*/
+
+    /*$x = 10;
+    $x += --$x;
+    echo $x;
+
+    */
+/*
+    $greta = 'ку';
+
+    echo "Это {$greta}";*/
+
+
+    /*preg_match(
+        "@^(?:http://)?([^/]+)@i",
+        'http://www.php.net/index.html',
+        $matches);
+
+    $match = $matches[1];
+    echo $match;*/
+//    echo "1" + "2";
+
+/*
+    error_reporting(-1);
+    $hello = 'Hello!';
+
+    for($i = 0; $i <= 3; $i++){
+        echo $hello[$i];
+    }
+
+    echo $hello[strlen($hello)-1];*/
+/*
+    $array = array('a'=>'One', 'b'=>'Two', 'c' =>
+    array('d' => 'Three', 'e' => 'Four'));
+
+
+    function print_element($array){
+        extract($array);
+        return $c['e'];
+    }
+
+    print print_element($array);*/
+
+
+//    error_reporting(-1);
+//    class c{
+//        private $a = 42;
+//        function &a(){
+//            return $this->a;
+//        }
+//        function print_a(){
+//            echo $this->a;
+//        }
+//    }
+//
+//     $c = new c;
+//    $d = &$c->a();
+//    echo $d;
+//    $d = 2;
+//    $c->print_a();
+//
+//$ar = 'Ru';
+//$$ar = 'Rulles';
+//
+//echo $ar;
+
+//echo 4 %2;
 ?>
