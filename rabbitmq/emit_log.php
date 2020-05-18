@@ -8,16 +8,16 @@ use PhpAmqpLib\Message\AMQPMessage;
 $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
 $channel = $connection->channel();
 
-$channel->exchange_declare('logs', 'fanout', false, false, false);
+//create new pointer exchange
+$channel->exchange_declare('logs', 'fanout', false, false, true);
 
-$data = implode('', array_slice($argv, 1));
+$data = implode(' ', array_slice($argv, 1));
 
-if(empty($data))
-    $data = "info: Hello World";
+if(empty($data)) $data = "info: Hello World!";
 
 $msg = new AMQPMessage($data);
 
-$channel->basic_publish($msg, "logs");
+$channel->basic_publish($msg, 'logs');
 
 echo " [x] Sent ", $data, "\n";
 
