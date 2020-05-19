@@ -15,7 +15,7 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
     $chan = $conn->channel();
     /* create queue */
     $chan->queue_declare(
-        'masha',
+        'queue',
         false,
         true,
         false,
@@ -34,7 +34,7 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
     //check if message was processed (something like loadbalance between exchanges)
     $chan->basic_qos(null,1,null);
     //get message from queue and do something
-    $chan->basic_consume('masha','',false,true,false,false, $callback);
+    $chan->basic_consume('queue','',false,true,false,false, $callback);
 
     $timeout = 5;
     while (count($chan->callbacks)) {

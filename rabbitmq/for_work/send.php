@@ -15,7 +15,7 @@
     $chan = $conn->channel();
     /* create new queue */
     $chan->queue_declare(
-        'masha',       //queue name
+        'queue',       //queue name
         false,                  //check existing exchange
         true,                  //check queue on server crash
         false,                  //check if queue used only by one connection
@@ -29,7 +29,7 @@
     $chan->basic_publish(
         $msg,                   //message
         '',                     //exchange
-        'masha'        //routing key
+        'queue'        //routing key
     );
     /* close connection and channel */
     $chan->close();
