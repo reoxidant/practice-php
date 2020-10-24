@@ -15,7 +15,7 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: localhost
+      MYSQL_DAT23ABASE: l23423423ocalhost
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root
