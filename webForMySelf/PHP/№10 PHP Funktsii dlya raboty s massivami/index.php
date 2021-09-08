@@ -1,8 +1,31 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * ${PLUGINNAME} file description here.
+ *
+ * @package    ${PLUGINNAME}
+ * @copyright  2021 SysBind Ltd. <service@sysbind.co.il>
+ * @auther     vshapovalov
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 error_reporting(-1);
 
-//TODO add 1 element to array
+//TODO Добавить элемент в массив
 /*$arr = array('Ivanov', 'Petrov', 'Sidorov');
 
 $goods = [
@@ -12,7 +35,6 @@ $goods = [
         'description' => 'Description'
     ],
     [
-
         'title' => 'iPad',
         'price' => 200,
         'description' => 'Description'
@@ -21,7 +43,7 @@ $goods = [
 
 $arr[] = 'Pupkin';*/
 
-//TODO рекурсивный вывод
+//TODO Рекурсивный вывод
 //echo count($goods, 1);
 
 //echo count($goods);
@@ -52,7 +74,7 @@ if (array_key_exists("first", $search_array)) {
 $array2 = array ("a", "b", "color" => "green", "shape" => "trapezoid", 4);
 $result = array_merge ($array1, $array2);*/
 
-//TODO оператор + берет все значение и ключи первого массива и добавляет без замены ключи и значения второго массива если их больше
+//TODO Оператор + берет все значение и ключи первого массива и добавляет без замены ключи и значения второго массива если их больше
 //$result = $array1 + $array2;
 
 //TODO Выведет случайный ключ массива, второй параметр колличество ключей
@@ -65,19 +87,16 @@ $result = array_merge ($array1, $array2);*/
 /*$city  = "San Francisco";
 $state = "CA";
 $event = "SIGGRAPH";
-
 $location_vars = array("city", "state");
-
 $result = compact($state, $city, $event, $location_vars);*/
 
 //TODO Извлекает из массива ключи, создавая из ключей переменные.
-//TODO extract --  Импортировать переменные из массива в текущую символьную таблицу.
+//TODO extract -- Импортировать переменные из массива в текущую символьную таблицу.
 
 /*$var_array = array("color" => "blue",
     "size"  => "medium",
     "shape" => "sphere");
 extract($var_array);
-
 echo "$color, $size, $shape"*/
 
 
@@ -87,7 +106,7 @@ asort
 sort
 rsort*/
 
-//TODO arsort --  Отсортировать массив по значению в обратном порядке, сохраняя ключи
+//TODO arsort -- Отсортировать массив по значению в обратном порядке, сохраняя ключи
 
 /*$fruits = array("d" => "lemon", "a" => "orange", "b" => "banana", "c" => "apple");
 arsort($fruits);
@@ -193,7 +212,7 @@ a = orange
 * list
 */
 
-//TODO array_combine --  Создать новый массив, используя один массив в качестве ключей, а другой в качестве соответствующих значений
+//TODO array_combine -- Создать новый массив, используя один массив в качестве ключей, а другой в качестве соответствующих значений
 
 /*$a = array('green', 'red', 'yellow');
 $b = array('avocado', 'apple', 'banana');
@@ -201,24 +220,21 @@ $c = array_combine($a, $b);
 */
 
 /*Выводит:
-
 Array
 (
     [green]  => avocado,
     [red]    => apple,
     [yellow] => banana
-
 )*/
 
-//TODO array_search --  Осуществляет поиск данного значения в массиве и возвращает соответствующий ключ в случае удачи
+//TODO array_search -- Осуществляет поиск данного значения в массиве и возвращает соответствующий ключ в случае удачи
 
 /*$array = array(0 => 'blue', 1 => 'red', 2 => 0x000000, 3 => 'green', 4 => 'red');
-
 $key = array_search('red', $array);         // $key = 1;
 $key = array_search('green', $array);       // $key = 2; (0x000000 == 0 == 'green')
 $key = array_search('green', $array, true); // $key = 3;*/
 
-//TODO array_shift --  Извлечь первый элемент массива
+//TODO array_shift -- Извлечь первый элемент массива
 
 /*
 $stack = array("orange", "banana", "apple", "raspberry");
@@ -295,17 +311,14 @@ if (in_array("mac", $os)) {
 //TODO list -- Присвоить переменным из списка значения подобно массиву
 
 /*$info = array('coffee', 'brown', 'caffeine');
-
 // Составить список всех переменных
 list($drink, $color, $power) = $info;
 echo "$drink is $color and $power makes it special.
 ";
-
 // Составить список только некоторых из них
 list($drink, , $power) = $info;
 echo "$drink has $power.
 ";
-
 // Или только третья
 list( , , $power) = $info;
 echo "I need $power!
