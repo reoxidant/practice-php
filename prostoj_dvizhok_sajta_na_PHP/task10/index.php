@@ -26,7 +26,7 @@ if(isset($_GET['page'])){
     $page = $_GET['page'];
     $path = "pages/$page.php";
     if(file_exists($path)){
-        $content = file_get_contents("$path");
+        $content = file_get_contents((string)$path);
         $reg = ['#\-\-title:(.*?)\-\-#','#\-\-desc:(.*?)\-\-#'];
         $tag = ['title', 'desc'];
         $result = insertAndReplace($reg,$content,$tag);

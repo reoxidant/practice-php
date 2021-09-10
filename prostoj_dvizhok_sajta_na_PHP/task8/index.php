@@ -21,15 +21,15 @@
 </head>
 <body>
     <header>
-        <?include('elems/header.php')?>
+        <?php include('elems/header.php')?>
     </header>
     <main>
-        <?
+        <?php
             if(isset($_GET['page'])){
                 $page = $_GET['page'];
                 $path = "pages/$page.php";
                 if(file_exists($path)){
-                    include("$path");
+                    include((string)$path);
                 }else{
                     echo "File don't exist!";
                 }
@@ -39,7 +39,7 @@
         ?>
     </main>
     <footer>
-        <?include('elems/footer.php')?>
+        <?php include('elems/footer.php')?>
     </footer>
 </body>
 </html>

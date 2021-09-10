@@ -25,7 +25,7 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
     echo '[x] waiting for message',"\n";
 
     /* send message to smtp relay */
-    $callback = function($msg){
+    $callback = static function($msg){
         echo '[x] message received ', $msg->body, "\n";
         echo '[x] message sent',"\n";
         //send acknowledge to rabbit (tell rabbit that delivery arrived successfully)
@@ -46,4 +46,3 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
             exit;
         }
     }
-?>

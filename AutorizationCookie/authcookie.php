@@ -6,8 +6,8 @@ $password = '';
 $db_name = 'reg';
 $flag = true;
 
-$link = mysqli_connect($host, $name, $password) or die (mysqli_error($link) . "1");
-mysqli_query($link, "CREATE DATABASE IF NOT EXISTS " . $db_name . "") or die(mysqli_error($link) . "2");
+$link = mysqli_connect($host, $name, $password) || die (mysqli_error($link) . "1");
+mysqli_query($link, "CREATE DATABASE IF NOT EXISTS " . $db_name . "") || die(mysqli_error($link) . "2");
 mysqli_select_db($link, $db_name) or die (mysqli_error($link) . "3");
 mysqli_query($link, "CREATE TABLE IF NOT EXISTS users(
         id INT(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -23,14 +23,14 @@ mysqli_query($link, "CREATE TABLE IF NOT EXISTS users(
         salt VARCHAR(100) NOT NULL,
         cookie VARCHAR(100) NOT NULL,
         UNIQUE us (login, email)
-        )") or die (mysqli_error($link));
-mysqli_query($link, "SET NAMES 'utf8'") or die (mysqli_error($link) . "4");
+        )") || die (mysqli_error($link));
+mysqli_query($link, "SET NAMES 'utf8'") || die (mysqli_error($link) . "4");
 
-if (!empty($_REQUEST['a_login']) and !empty($_REQUEST['a_password']) and isset($_REQUEST['submit3'])) {
+if (!empty($_REQUEST['a_login']) && !empty($_REQUEST['a_password']) && isset($_REQUEST['submit3'])) {
     $login = $_REQUEST['a_login'];
     $password = $_REQUEST['a_password'];
 
-    $result = mysqli_query($link, "SELECT * FROM users WHERE login='" . $login . "'") or die (mysqli_error($link) . "1");
+    $result = mysqli_query($link, "SELECT * FROM users WHERE login='" . $login . "'") || die (mysqli_error($link) . "1");
 
     $user = mysqli_fetch_assoc($result);
 
@@ -45,7 +45,7 @@ if (!empty($_REQUEST['a_login']) and !empty($_REQUEST['a_password']) and isset($
             $_SESSION['id'] = $user['id'];
             $_SESSION['login'] = $user['login'];
 
-            if (!empty($_REQUEST['remember']) and $_REQUEST['remember'] == 1) {
+            if (!empty($_REQUEST['remember']) && $_REQUEST['remember'] === 1) {
                 $key = generateSalt();
 
                 setcookie('login', $user['login'], time() + 60 * 60 * 24 * 30);
@@ -53,7 +53,7 @@ if (!empty($_REQUEST['a_login']) and !empty($_REQUEST['a_password']) and isset($
                 setcookie('datetime', date('Y-m-d H:i:s'), time() + 60 * 60 * 24 * 30);
 
                 $query = "UPDATE users SET cookie='$key' WHERE login='$login'";
-                mysqli_query($link, $query) or die(mysqli_error($link) . "2");
+                mysqli_query($link, $query) || die(mysqli_error($link) . "2");
             }
         }
     }
@@ -302,11 +302,15 @@ if ($_REQUEST['logout'] === 1) {
                             // Если строчки в базе нет то оставь логин и значение которые оставил пользователь
                             if (mysqli_num_rows($res) === 0){
                             ?>
-                            <input type="text" name="a_login"
-                                   value="<?php echo isset($_REQUEST['a_login']) ? $_REQUEST['a_login'] : ''; ?>">
+                            <label>
+                                <input type="text" name="a_login"
+                                       value="<?php echo isset($_REQUEST['a_login']) ? $_REQUEST['a_login'] : ''; ?>">
+                            </label>
                         <p>
                             Пароль:<br>
-                            <input type="password" name="a_password" value="">
+                            <label>
+                                <input type="password" name="a_password" value="">
+                            </label>
                         </p>
                         <p>
                             <label>
@@ -319,10 +323,14 @@ if ($_REQUEST['logout'] === 1) {
                         // Иначе напиши стандартные значение
                         } else {
                             ?>
-                            <input type="text" name="a_login" value="">
+                            <label>
+                                <input type="text" name="a_login" value="">
+                            </label>
                             <p>
                                 Пароль:<br>
-                                <input type="password" name="a_password" value="">
+                                <label>
+                                    <input type="password" name="a_password" value="">
+                                </label>
                             </p>
                             <p>
                                 <label>
@@ -350,7 +358,7 @@ if ($_REQUEST['logout'] === 1) {
                 $login = $_REQUEST['a_login'];
                 $password = $_REQUEST['a_password'];
 
-                $result = mysqli_query($link, "SELECT * FROM users WHERE login='" . $login . "'") or die (mysqli_error($link) . "1");
+                $result = mysqli_query($link, "SELECT * FROM users WHERE login='" . $login . "'") || die (mysqli_error($link) . "1");
 
                 $user = mysqli_fetch_assoc($result);
 

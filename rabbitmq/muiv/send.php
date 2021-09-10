@@ -34,4 +34,3 @@
     /* close connection and channel */
     $chan->close();
     $conn->close();
-?>

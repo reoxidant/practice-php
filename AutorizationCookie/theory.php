@@ -4,8 +4,8 @@ $user = 'root';
 $password = '';
 $db_name = 'reg';
 
-$link = mysqli_connect($host, $user, $password) or die(mysqli_error($link));
-mysqli_query($link, "CREATE DATABASE IF NOT EXISTS " . $db_name . "") or die(mysqli_error($link));
+$link = mysqli_connect($host, $user, $password) || die(mysqli_error($link));
+mysqli_query($link, "CREATE DATABASE IF NOT EXISTS " . $db_name . "") || die(mysqli_error($link));
 mysqli_select_db($link, $db_name) or die(mysqli_error($link));
 mysqli_query($link, "CREATE TABLE IF NOT EXISTS users(
 		id int(4) AUTO_INCREMENT PRIMARY KEY NOT NULL, 
@@ -14,14 +14,14 @@ mysqli_query($link, "CREATE TABLE IF NOT EXISTS users(
 		salt VARCHAR(100) NOT NULL, 
 		cookie VARCHAR(100) NOT NULL, 
 		UNIQUE us (login)
-		)") or die (mysqli_error($link));
+		)") || die (mysqli_error($link));
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AuthWithCookie</title>
+    <title>Theory</title>
 </head>
 <body>
 <form action="" method="POST">
@@ -73,7 +73,7 @@ if (!empty($_REQUEST['login']) && !empty($_REQUEST['password']) && isset($_REQUE
     } else {
         echo "Неправильный логин или пароль!";
     }
-} else if (isset($_REQUEST['submit'])) {
+} else if ($_REQUEST['submit']) {
     echo "Вы не ввели все поля!";
 }
 ?>

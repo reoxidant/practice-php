@@ -23,5 +23,3 @@ while($channel->is_consuming()){
 
 $channel->close();
 $connection->close();
-
-?>

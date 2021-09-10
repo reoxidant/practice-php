@@ -51,13 +51,13 @@ if(isset($_GET['page'])){
 <body>
     <?=$result[0]['desc']?>
     <header>
-        <?include('elems/header.php')?>
+        <?php include('elems/header.php')?>
     </header>
     <main>
-        <?=$content; ?>
+        <?=$content ?>
     </main>
     <footer>
-        <?include('elems/footer.php')?>
+        <?php include('elems/footer.php')?>
     </footer>
 </body>
 </html>

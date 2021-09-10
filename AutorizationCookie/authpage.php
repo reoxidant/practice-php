@@ -84,7 +84,7 @@ if ($flag) { ?>
         <p>Здравствуй, <?php echo $_COOKIE['login']; ?>.</p>
         <p>Сейчас <?php echo date('Y-m-d H:i:s'); ?>.</p>
         <p>Ваша дата последнего посещения: <?php echo $_COOKIE['datetime']; ?></p>
-        <p><a href="AuthWithCookie.php">Выйти</a></p>
+        <p><a href="AuthCookie.php">Выйти</a></p>
     </fieldset>
 <?php } ?>
 </body>
